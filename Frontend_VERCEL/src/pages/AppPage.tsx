@@ -28,6 +28,7 @@ const AppPage = () => {
     guidanceScale,
     controlImage,
     loraScales,
+    selectedModel,
     setPrompt,
     setWidth,
     setHeight,
@@ -35,6 +36,7 @@ const AppPage = () => {
     setGuidanceScale,
     setControlImage,
     setLoraScales,
+    setSelectedModel,
     handleGenerate,
     handleImageLoad,
     handleImageError
@@ -69,7 +71,7 @@ const AppPage = () => {
       {/* Background Spline 3D iframe */}
       <div className="fixed top-[10px] left-[-120px] w-[120%] h-[120%] z-0">
           <iframe 
-              src='https://my.spline.design/retrofuturisticcircuitloop-2mNopvKV8SQWJs2nPRvrxDyH/' 
+              src='https://my.spline.design/retrofuturisticcircuitloop-mMGk86WKmMW9qCpLyPQkAZR0/' 
               frameBorder='0' 
               width='100%' 
               height='100%' 
@@ -149,6 +151,8 @@ const AppPage = () => {
                 onImageLoad={handleImageLoad}
                 onImageError={handleImageError}
                 onError={addError}
+                selectedModel={selectedModel}
+                setSelectedModel={setSelectedModel}
               />
             </TabsContent>
 
