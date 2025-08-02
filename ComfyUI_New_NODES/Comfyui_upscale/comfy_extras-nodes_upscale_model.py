@@ -49,37 +49,42 @@ class ImageUpscaleWithModel:
     CATEGORY = "image/upscaling"
 
     def upscale(self, upscale_model, image):
-        # --- Start of Modification ---
-        # Define the maximum dimension (height or width) for the upscaled image.
         MAX_DIMENSION = 2160
-
         h, w = image.shape[1:3]
-        final_scale = 1.0 # Default to 1.0 (no upscale)
 
-        # Proceed only if the original image has dimensions.
+        # --- ADDED: Early return if image already exceeds the max dimension ---
+        if max(h, w) > MAX_DIMENSION:
+            print(f"[ImageUpscaleWithModel] Image size ({w}x{h}) is larger than {MAX_DIMENSION}px. Skipping upscale and returning original image.")
+            return (image,)
+        # --- END OF ADDITION ---
+
+        # Calculate the final scale factor, ensuring it doesn't exceed the limit
+        final_scale = 1.0
         if h > 0 and w > 0:
-            # If the original image's largest dimension already exceeds the limit, set scale to 1.0.
-            if max(h, w) >= MAX_DIMENSION:
-                final_scale = 1.0
-            else:
-                # Calculate the maximum scale factor that can be applied without exceeding MAX_DIMENSION.
-                scale_limit = MAX_DIMENSION / max(h, w)
-                # Use the smaller value between the model's native scale and our calculated limit.
-                final_scale = min(upscale_model.scale, scale_limit)
-        # --- End of Modification ---
+            scale_limit = MAX_DIMENSION / max(h, w)
+            final_scale = min(upscale_model.scale, scale_limit)
+        
+        if final_scale < 1.0:
+            final_scale = 1.0
+            
+        # If no upscaling is needed, return the original image
+        if final_scale == 1.0:
+            return (image,)
 
         device = model_management.get_torch_device()
-
+        
         memory_required = model_management.module_size(upscale_model.model)
-        # MODIFIED: Use the calculated 'final_scale' for memory estimation.
-        memory_required += (512 * 512 * 3) * image.element_size() * max(final_scale, 1.0) * 384.0 #The 384.0 is an estimate of how much some of these models take, TODO: make it more accurate
+        memory_required += (512 * 512 * 3) * image.element_size() * max(final_scale, 1.0) * 384.0
         memory_required += image.nelement() * image.element_size()
         model_management.free_memory(memory_required, device)
 
         upscale_model.to(device)
         in_img = image.movedim(-1,-3).to(device)
 
+        # Dynamically set tile size to be no larger than the image's smallest dimension
         tile = min(h, w, 512)
+        print(f"[ImageUpscaleWithModel] DEBUG: Upscaling image from {w}x{h}. Tile size: {tile}. Final scale: {final_scale:.2f}")
+        
         overlap = 32
 
         oom = True
@@ -87,7 +92,6 @@ class ImageUpscaleWithModel:
             try:
                 steps = in_img.shape[0] * comfy.utils.get_tiled_scale_steps(in_img.shape[3], in_img.shape[2], tile_x=tile, tile_y=tile, overlap=overlap)
                 pbar = comfy.utils.ProgressBar(steps)
-                # MODIFIED: Use the calculated 'final_scale' for the upscaling operation.
                 s = comfy.utils.tiled_scale(in_img, lambda a: upscale_model(a), tile_x=tile, tile_y=tile, overlap=overlap, upscale_amount=final_scale, pbar=pbar)
                 oom = False
             except model_management.OOM_EXCEPTION as e:
