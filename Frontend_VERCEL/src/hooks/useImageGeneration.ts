@@ -15,6 +15,7 @@ export const useImageGeneration = () => {
   const [guidanceScale, setGuidanceScale] = useState(7.5);
   const [controlImage, setControlImage] = useState<File | null>(null);
   const [loraScales, setLoraScales] = useState<Record<string, number>>({});
+  const [selectedModel, setSelectedModel] = useState("SDXL_Base");
   
   const { toast } = useToast();
 
@@ -133,6 +134,7 @@ export const useImageGeneration = () => {
     guidanceScale,
     controlImage,
     loraScales,
+    selectedModel,
     
     // Setters
     setPrompt,
@@ -142,6 +144,7 @@ export const useImageGeneration = () => {
     setGuidanceScale,
     setControlImage,
     setLoraScales,
+    setSelectedModel,
     
     // Handlers
     handleGenerate,
