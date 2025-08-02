@@ -100,7 +100,7 @@ const PlaygroundInputSection = ({
                 <SelectItem
                   key={model}
                   value={model}
-                  className="bg-slate-800 text-white hover:bg-slate-700/40 px-4 py-2 text-sm"
+                  className="bg-slate-800 text-white hover:bg-slate-700/40 pl-10 pr-4 py-2 text-sm"
                 >
                   {model}
                 </SelectItem>
