@@ -71,8 +71,8 @@ const PlaygroundInputSection = ({
     openSectionCount
   } = useSectionManager();
 
-  // Collapsible logic for the two panels
-  const [openPanel, setOpenPanel] = useState<'model' | 'auto' | null>(null);
+  // Collapsible logic for automatic generation panel only
+  const [openPanel, setOpenPanel] = useState<'auto' | null>(null);
 
   return (
     <div className="space-y-6">
@@ -85,22 +85,33 @@ const PlaygroundInputSection = ({
 
       {/* Two horizontally stacked buttons */}
       <div className="flex flex-row gap-2 w-full">
-        {/* Dropdown Button */}
-        <Button
-          variant={openPanel === 'model' ? 'secondary' : 'outline'}
-          className="w-1/2 flex items-center justify-between bg-slate-00/50 border border-slate-700 hover:bg-slate-700/50 text-white"
-          onClick={() => setOpenPanel(openPanel === 'model' ? null : 'model')}
-        >
-          <span className="flex items-center gap-2">
-            <ChevronDown className="w-4 h-4 text-[#A3E635]" />
-            <span className="text-sm font-medium">Select Model</span>
-          </span>
-          <span className="ml-2 text-xs text-[#A3E635]">{selectedModel}</span>
-        </Button>
+        {/* Direct Model Selection Dropdown */}
+        <div className="w-1/2">
+          <Select value={selectedModel} onValueChange={setSelectedModel}>
+            <SelectTrigger className="w-full bg-slate-800/50 border border-slate-700 text-white hover:bg-slate-700/50 rounded-lg px-4 py-2 text-sm flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <ChevronDown className="w-4 h-4 text-[#A3E635]" />
+                <span className="text-sm font-medium">Select Model</span>
+                <span className="ml-2 text-xs text-[#A3E635]">{selectedModel}</span>
+              </div>
+            </SelectTrigger>
+            <SelectContent className="bg-slate-800 border border-slate-700 text-white rounded-lg shadow-lg z-50">
+              {modelOptions.map((model) => (
+                <SelectItem
+                  key={model}
+                  value={model}
+                  className="bg-slate-800 text-white hover:bg-slate-700/40 px-4 py-2 text-sm"
+                >
+                  {model}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
         {/* Automatic Generation Button */}
         <Button
           variant={openPanel === 'auto' ? 'secondary' : 'outline'}
-          className="w-1/2 flex items-center justify-between bg-slate-00/50 border border-slate-700 hover:bg-slate-700/50 text-white"
+          className="w-1/2 flex items-center justify-between bg-slate-800/50 border border-slate-700 hover:bg-slate-700/50 text-white"
           onClick={() => setOpenPanel(openPanel === 'auto' ? null : 'auto')}
         >
           <span className="flex items-center gap-2">
@@ -109,27 +120,8 @@ const PlaygroundInputSection = ({
           </span>
         </Button>
       </div>
-      {/* Panels (only one open at a time) */}
+      {/* Automatic Generation Panel */}
       <div className="w-full">
-        {openPanel === 'model' && (
-          <div className="w-full bg-slate-800/50 border border-slate-700 rounded-lg p-4 mt-2">
-            <Select value={selectedModel} onValueChange={setSelectedModel}>
-            <SelectTrigger className="w-full bg-transparent border border-slate-700 text-white hover:bg-slate-700/30 rounded-lg px-4 py-2 text-sm">
-                <SelectValue placeholder="Select a model" />
-              </SelectTrigger>
-              <SelectContent className="bg-slate-800 border border-slate-700 text-white rounded-lg shadow-lg">
-                {modelOptions.map((model) => (
-                  <SelectItem
-  value={model}
-  className="bg-slate-800 text-white hover:bg-slate-700/40 px-4 py-2 text-sm"
->
-  {model}
-</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        )}
         {openPanel === 'auto' && (
           <div className="w-full mt-2">
             <AutomaticGeneration
