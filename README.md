@@ -189,10 +189,9 @@ This project includes a variety of custom ComfyUI nodes to extend its capabiliti
 - ⚡ **Comfyui_FLUX_Optimizer**: Contains optimizations for the FLUX model. # and compiler for flux model
 - 🔗 **Comfyui_conditioning**: Manages and caches conditioning data, such as text embeddings. Here are the essential steps to use the custom conditioning models.
     - **Place Models**: Put the following files into the `ComfyUI/models/conditioning/` directory:
-          -prompt_conditioning_bracelets.safetensors
-          -prompt_conditioning_cap.safetensors
-          -prompt_conditioning_watch.safetensors
-
+      - prompt_conditioning_bracelets.safetensors
+      - prompt_conditioning_cap.safetensors
+      - prompt_conditioning_watch.safetensors
     - **Load Models**: In your ComfyUI workflow, load the models from the `conditioning` subfolder.
 
     - **Find Outputs**: Your generated images will be saved in the `ComfyUI/output/` directory.
