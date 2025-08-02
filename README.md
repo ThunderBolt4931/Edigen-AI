@@ -173,10 +173,7 @@ This backend provides a more conventional API for image generation and includes 
     pip install -r requirements.txt
     ```
 2. **Ngrok Tunnel for Public Access**: Run the notebook and the last cell of the notebook should include your Ngrok auth token to expose the server. Replace the token provided with your own Ngrok token which can be fetched by logging in your Ngrok account:
-   ``` sh
-   ngrok config add-authtoken <your-ngrok-auth-token>
-   ngrok http 8000
-   ```
+   
 Copy the generated public URL and set it in the frontend config.
 
 ---
