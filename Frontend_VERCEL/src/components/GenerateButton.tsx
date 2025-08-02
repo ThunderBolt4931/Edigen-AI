@@ -82,7 +82,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     -webkit-mask-image: -webkit-radial-gradient(white, black);
     overflow: hidden;
     border-radius: 24px;
-    min-width: 550px;
+    min-width: 600px;
     padding: 12px 24px;
     display: flex;
     align-items: center;
@@ -101,7 +101,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     position: absolute;
     left: 0;
     top: 0;
-    width: 550px;
+    width: 600px;
     height: 100px;
     border-radius: 90%;
     filter: blur(var(--blur, 8px));
