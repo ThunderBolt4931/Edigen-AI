@@ -1522,7 +1522,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
   "1": {
     "inputs": {
       "image": [
-        "35",
+        "36",
         0
       ]
     },
@@ -1552,7 +1552,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
   "3": {
     "inputs": {
       "image": [
-        "41",
+        "42",
         0
       ]
     },
@@ -1565,15 +1565,15 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
     "inputs": {
       "image_strength": "high",
       "conditioning": [
-        "88",
+        "60",
         0
       ],
       "style_model": [
-        "49",
+        "50",
         0
       ],
       "clip_vision_output": [
-        "38",
+        "39",
         0
       ]
     },
@@ -1626,7 +1626,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
         0
       ],
       "conditioning": [
-        "69",
+        "67",
         0
       ]
     },
@@ -1647,7 +1647,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
   "13": {
     "inputs": {
       "conditioning_to": [
-        "88",
+        "60",
         0
       ],
       "conditioning_from": [
@@ -1685,7 +1685,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "tapered_corners": false,
       "flip_input": false,
       "blur_radius": 8,
-      "lerp_alpha": 0.24000000000000005,
+      "lerp_alpha": 1,
       "decay_factor": 1,
       "fill_holes": false,
       "mask": [
@@ -1711,7 +1711,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
         1
       ],
       "model": [
-        "73",
+        "71",
         0
       ]
     },
@@ -1746,34 +1746,11 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
   },
   "21": {
     "inputs": {
-      "width": [
-        "19",
-        0
-      ],
-      "height": [
-        "19",
-        1
-      ],
-      "position": "right-center",
-      "x_offset": 0,
-      "y_offset": 0,
-      "image": [
-        "20",
-        0
-      ]
-    },
-    "class_type": "ImageCrop+",
-    "_meta": {
-      "title": "🔧 Image Crop"
-    }
-  },
-  "22": {
-    "inputs": {
       "brightness": 1.05,
       "contrast": 0.98,
       "saturation": 1.05,
       "image": [
-        "24",
+        "23",
         0
       ]
     },
@@ -1782,11 +1759,11 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "LayerColor: Brightness Contrast V2"
     }
   },
-  "23": {
+  "22": {
     "inputs": {
       "channel": "red",
       "image": [
-        "21",
+        "76",
         0
       ]
     },
@@ -1795,7 +1772,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "Convert Image to Mask"
     }
   },
-  "24": {
+  "23": {
     "inputs": {
       "width": [
         "19",
@@ -1809,7 +1786,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "x_offset": 0,
       "y_offset": 0,
       "image": [
-        "66",
+        "64",
         0
       ]
     },
@@ -1818,10 +1795,10 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "🔧 Image Crop"
     }
   },
-  "26": {
+  "25": {
     "inputs": {
       "noise": [
-        "68",
+        "66",
         0
       ],
       "guider": [
@@ -1833,7 +1810,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
         0
       ],
       "sigmas": [
-        "78",
+        "77",
         0
       ],
       "latent_image": [
@@ -1858,11 +1835,11 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
         0
       ],
       "vae": [
-        "51",
+        "52",
         0
       ],
       "pixels": [
-        "41",
+        "42",
         0
       ],
       "mask": [
@@ -1875,11 +1852,11 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "InpaintModelConditioning"
     }
   },
-  "35": {
+  "36": {
     "inputs": {
       "width": 16384,
       "height": [
-        "40",
+        "41",
         1
       ],
       "interpolation": "lanczos",
@@ -1887,7 +1864,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "condition": "always",
       "multiple_of": 0,
       "image": [
-        "75",
+        "59",
         0
       ]
     },
@@ -1896,7 +1873,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "🔧 Image Resize"
     }
   },
-  "36": {
+  "37": {
     "inputs": {
       "x": 0,
       "y": 0,
@@ -1906,11 +1883,11 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
         1
       ],
       "source": [
-        "22",
+        "21",
         0
       ],
       "mask": [
-        "23",
+        "22",
         0
       ]
     },
@@ -1919,15 +1896,15 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "ImageCompositeMasked"
     }
   },
-  "38": {
+  "39": {
     "inputs": {
       "crop": "none",
       "clip_vision": [
-        "47",
+        "48",
         0
       ],
       "image": [
-        "75",
+        "59",
         0
       ]
     },
@@ -1936,7 +1913,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "CLIP Vision Encode"
     }
   },
-  "39": {
+  "40": {
     "inputs": {
       "unet_name": "flux1-fill-dev-fp8.safetensors",
       "weight_dtype": "default"
@@ -1946,7 +1923,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "Load Diffusion Model"
     }
   },
-  "40": {
+  "41": {
     "inputs": {
       "image": [
         "74",
@@ -1958,12 +1935,12 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "🔧 Get Image Size"
     }
   },
-  "41": {
+  "42": {
     "inputs": {
       "direction": "right",
       "match_image_size": false,
       "image1": [
-        "35",
+        "36",
         0
       ],
       "image2": [
@@ -1976,7 +1953,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "Image Concatenate"
     }
   },
-  "47": {
+  "48": {
     "inputs": {
       "clip_name": "sigclip_vision_patch14_384.safetensors"
     },
@@ -1985,7 +1962,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "Load CLIP Vision"
     }
   },
-  "49": {
+  "50": {
     "inputs": {
       "style_model_name": "flux1-redux-dev.safetensors"
     },
@@ -1994,7 +1971,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "Load Style Model"
     }
   },
-  "51": {
+  "52": {
     "inputs": {
       "vae_name": "ae.safetensors"
     },
@@ -2003,10 +1980,10 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "Load VAE"
     }
   },
-  "56": {
+  "57": {
     "inputs": {
       "images": [
-        "41",
+        "42",
         0
       ]
     },
@@ -2015,7 +1992,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "Preview Image"
     }
   },
-  "57": {
+  "58": {
     "inputs": {
       "model_type": "flux",
       "rel_l1_thresh": 0.4,
@@ -2023,7 +2000,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "end_percent": 1,
       "cache_device": "cuda",
       "model": [
-        "39",
+        "40",
         0
       ]
     },
@@ -2032,7 +2009,16 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "TeaCache"
     }
   },
-  "58": {
+  "59": {
+    "inputs": {
+      "image": "pexels-pixabay-68201 (2).jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Other insert object"
+    }
+  },
+  "60": {
     "inputs": {
       "filename": "prompt_conditioning.safetensors"
     },
@@ -2041,14 +2027,14 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "Load Conditioning"
     }
   },
-  "61": {
+  "62": {
     "inputs": {
       "stitcher": [
         "74",
         0
       ],
       "inpainted_image": [
-        "36",
+        "37",
         0
       ]
     },
@@ -2057,14 +2043,14 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "✂️ Inpaint Stitch (Improved)"
     }
   },
-  "66": {
+  "64": {
     "inputs": {
       "samples": [
-        "26",
+        "25",
         0
       ],
       "vae": [
-        "51",
+        "52",
         0
       ]
     },
@@ -2073,16 +2059,16 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "VAE Decode"
     }
   },
-  "68": {
+  "66": {
     "inputs": {
-      "noise_seed": 1002766470811437
+      "noise_seed": 522921034946146
     },
     "class_type": "RandomNoise",
     "_meta": {
       "title": "RandomNoise"
     }
   },
-  "69": {
+  "67": {
     "inputs": {
       "guidance": 30,
       "conditioning": [
@@ -2095,10 +2081,10 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "FluxGuidance"
     }
   },
-  "70": {
+  "68": {
     "inputs": {
       "images": [
-        "36",
+        "37",
         0
       ]
     },
@@ -2107,10 +2093,10 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "Preview Image"
     }
   },
-  "71": {
+  "69": {
     "inputs": {
       "model": [
-        "57",
+        "58",
         0
       ]
     },
@@ -2119,12 +2105,12 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "Differential Diffusion"
     }
   },
-  "72": {
+  "70": {
     "inputs": {
       "lora_name": "comfyui_portrait_lora64.safetensors",
       "strength_model": 0.8000000000000002,
       "model": [
-        "71",
+        "69",
         0
       ]
     },
@@ -2133,18 +2119,40 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "LoraLoaderModelOnly"
     }
   },
-  "73": {
+  "71": {
     "inputs": {
       "lora_name": "pytorch_lora_weights.safetensors",
       "strength_model": 0.6000000000000001,
       "model": [
-        "72",
+        "70",
         0
       ]
     },
     "class_type": "LoraLoaderModelOnly",
     "_meta": {
       "title": "LoraLoaderModelOnly"
+    }
+  },
+  "72": {
+    "inputs": {
+      "image": "clipspace/clipspace-mask-518788.3000000119.png [input]"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Other insert"
+    }
+  },
+  "73": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "78",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "Convert Image to Mask"
     }
   },
   "74": {
@@ -2173,11 +2181,11 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "output_target_height": 720,
       "output_padding": "128",
       "image": [
-        "93",
+        "84",
         0
       ],
       "mask": [
-        "84",
+        "73",
         0
       ]
     },
@@ -2186,25 +2194,30 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "✂️ Inpaint Crop (Improved)"
     }
   },
-  "75": {
-    "inputs": {
-      "image": "IMG_20250727_004653.jpg"
-    },
-    "class_type": "LoadImage",
-    "_meta": {
-      "title": "Other insert object"
-    }
-  },
   "76": {
     "inputs": {
-      "image": "download.png"
+      "width": [
+        "19",
+        0
+      ],
+      "height": [
+        "19",
+        1
+      ],
+      "position": "right-center",
+      "x_offset": 0,
+      "y_offset": 0,
+      "image": [
+        "20",
+        0
+      ]
     },
-    "class_type": "LoadImage",
+    "class_type": "ImageCrop+",
     "_meta": {
-      "title": "Other insert"
+      "title": "🔧 Image Crop"
     }
   },
-  "78": {
+  "77": {
     "inputs": {
       "scheduler": "sgm_uniform",
       "steps": 30,
@@ -2219,110 +2232,60 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "BasicScheduler"
     }
   },
-  "84": {
+  "78": {
     "inputs": {
-      "channel": "red",
-      "image": [
-        "85",
-        0
-      ]
-    },
-    "class_type": "ImageToMask",
-    "_meta": {
-      "title": "Convert Image to Mask"
-    }
-  },
-  "85": {
-    "inputs": {
-      "mask": [
-        "91",
-        0
-      ]
-    },
-    "class_type": "MaskToImage",
-    "_meta": {
-      "title": "Convert Mask to Image"
-    }
-  },
-  "87": {
-    "inputs": {
-      "clip_name1": "clip_l.safetensors",
-      "clip_name2": "t5xxl_fp8_e4m3fn.safetensors",
-      "type": "flux",
-      "device": "default"
-    },
-    "class_type": "DualCLIPLoader",
-    "_meta": {
-      "title": "DualCLIPLoader"
-    }
-  },
-  "88": {
-    "inputs": {
-      "text": "cap on head of the men",
-      "clip": [
-        "87",
-        0
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "89": {
-    "inputs": {
-      "images": [
-        "85",
-        0
-      ]
-    },
-    "class_type": "PreviewImage",
-    "_meta": {
-      "title": "Preview Image"
-    }
-  },
-  "90": {
-    "inputs": {
-      "image": "1.png"
+      "image": "undefined"
     },
     "class_type": "LoadImage",
     "_meta": {
       "title": "Load Other Mask"
     }
   },
-  "91": {
+  "79": {
     "inputs": {
-      "channel": "red",
+      "model_name": "4x_NMKD-Siax_200k.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "80": {
+    "inputs": {
+      "upscale_model": [
+        "79",
+        0
+      ],
       "image": [
-        "90",
+        "62",
         0
       ]
     },
-    "class_type": "ImageToMask",
+    "class_type": "ImageUpscaleWithModel",
     "_meta": {
-      "title": "Convert Image to Mask"
+      "title": "Upscale Image (using Model)"
     }
   },
-  "92": {
+  "82": {
     "inputs": {
-      "image": [
-        "85",
+      "images": [
+        "80",
         0
       ]
     },
-    "class_type": "GetImageSize+",
+    "class_type": "PreviewImage",
     "_meta": {
-      "title": "🔧 Get Image Size"
+      "title": "Final Output"
     }
   },
-  "93": {
+  "84": {
     "inputs": {
       "width": [
-        "92",
+        "85",
         0
       ],
       "height": [
-        "92",
+        "85",
         1
       ],
       "upscale_method": "nearest-exact",
@@ -2332,7 +2295,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "divisible_by": 2,
       "device": "cpu",
       "image": [
-        "76",
+        "72",
         0
       ]
     },
@@ -2341,16 +2304,16 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "title": "Resize Image v2"
     }
   },
-  "95": {
+  "85": {
     "inputs": {
-      "images": [
-        "61",
+      "image": [
+        "78",
         0
       ]
     },
-    "class_type": "PreviewImage",
+    "class_type": "GetImageSize+",
     "_meta": {
-      "title": "Final Output"
+      "title": "🔧 Get Image Size"
     }
   }
 };
