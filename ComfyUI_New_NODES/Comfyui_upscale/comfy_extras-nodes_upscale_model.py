@@ -79,7 +79,7 @@ class ImageUpscaleWithModel:
         upscale_model.to(device)
         in_img = image.movedim(-1,-3).to(device)
 
-        tile = 512
+        tile = min(h, w, 512)
         overlap = 32
 
         oom = True
