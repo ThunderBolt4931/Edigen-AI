@@ -88,7 +88,7 @@ const PlaygroundInputSection = ({
         {/* Direct Model Selection Dropdown */}
         <div className="w-1/2">
           <Select value={selectedModel} onValueChange={setSelectedModel}>
-            <SelectTrigger className="w-full bg-slate-800/50 border border-slate-700 text-white hover:bg-slate-700/50 rounded-lg px-4 py-2 text-sm flex items-center justify-between">
+            <SelectTrigger className="w-full bg-slate-800/50 border border-slate-700 text-white hover:bg-slate-700/50 rounded-lg pl-10 pr-4 py-2 text-sm flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <ChevronDown className="w-4 h-4 text-[#A3E635]" />
                 <span className="text-sm font-medium">Select Model</span>
