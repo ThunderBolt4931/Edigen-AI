@@ -19,13 +19,32 @@ Magic Control Canvas is a versatile and powerful web application for AI image ge
 
 ## Project Structure
 
-The project is organized into the following main directories:
+## 🧩 Key Components Breakdown
 
--   `Frontend_VERCEL/`: The React-based frontend application.
--   `Comfyui_backend/`: The ComfyUI-based backend, including a Python script for running complex workflows.
--   `ComfyUI_New_NODES/`: A collection of custom nodes for the ComfyUI backend.
--   `SD_Backend/`: A `diffusers`-based backend powered by a FastAPI server.
--   `workflows/`: Pre-defined ComfyUI workflow definitions in JSON format.
+### Backend & Workflows
+
+* **`comfui-backend`**: Contains a custom `comfy-runner` script for launching and managing the ComfyUI instance, along with utilities for downloading and organizing required models.
+* **`sd-backend`**: Holds the necessary configurations and scripts for the core Stable Diffusion backend.
+  
+### Workflows
+
+This directory contains pre-built graphs. The star is `multipipeline_watch.json`, a complex workflow designed to generate highly detailed watches by isolating and manipulating the text on the watch face.
+
+### Custom Nodes
+
+This project introduces several powerful custom nodes to enhance your generative pipelines:
+
+* **`Upscaler`**: A node for high-resolution image upscaling.
+* **`PaddleOCR`**: Integrates PaddleOCR for robust text recognition directly within your workflow. Useful for reading text from generated or existing images.
+* **`Handwrist Automasking`**: Automatically detects and creates masks for hands and wrists, perfect for generating realistic product placements or virtual try-ons.
+* **`Conditioning`**: Provides advanced options for model and prompt conditioning, giving you finer control over the output.
+* **`Watch`**: A specialized node set for watch generation:
+    * **Mask Watch Face**: Precisely masks the inside circular area of a watch dial. This is essential for isolating the face to apply text or other details accurately.
+    * **Flux Optimizer**: A helper node designed to work with the watch masker, optimizing the generative process for clarity and precision on the watch face.
+
+### Results
+
+The `results/` contains example images generated using the workflows and custom nodes in this repository. Check them out to see what's possible!
 
 ## Setup and Usage
 
