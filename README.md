@@ -4,18 +4,47 @@ Magic Control Canvas is a versatile and powerful web application for AI image ge
 
 ## Key Features
 
--   **Dual Backend Architecture**: Choose between two powerful backends:
-    -   A **ComfyUI-based backend** for running complex, node-based image generation workflows.
-    -   A **`diffusers`-based backend** (powered by FastAPI) for a more streamlined experience with support for various models and features like automatic LoRA selection.
--   **Comprehensive Image Generation Capabilities**:
-    -   Text-to-Image
-    -   Image-to-Image
-    -   Inpainting and Outpainting
-    -   ControlNet for precise control over image generation
--   **Extensive Customization**:
-    -   A rich collection of **custom ComfyUI nodes** for advanced image manipulation, including hand/wrist masking, OCR, upscaling, and more.
-    -   Support for LoRA models on both backends.
--   **Modern, Responsive Frontend**: A clean and intuitive web interface built with React, Vite, and ShadCN UI.
+### ⚙️ Flexible Dual-Backend Architecture
+
+- A streamlined **Diffusers-based backend** (powered by FastAPI) for core text-to-image tasks, using a **custom-pruned SDXL model** optimized for speed and performance.
+- A powerful **ComfyUI backend** dedicated to advanced image manipulation, inpainting, and the virtual try-on pipeline.
+
+---
+
+### 🧠 Advanced Virtual Try-On & Inpainting Pipeline
+
+- Built on the high-performance **FLUX** model for efficient and realistic manipulations.
+- Features a **multi-stage inpainting process** that:
+  - Intelligently crops the image
+  - Regenerates missing content
+  - Seamlessly stitches it back into the original
+- Includes **automated precision masking** for accessories like watches.
+- Supports **automatic hand and wrist masking** for realistic and aligned placements.
+- Fully **modular and bypass-capable pipeline** allowing deep customization of the workflow.
+
+---
+
+### 🧩 Extensive Model & Customization Support
+
+- Full support for a wide range of **LoRA models** across both backends.
+- Specialized LoRAs for **text preservation** and **image enhancement** (e.g., `ace++`).
+- **Advanced model stacking** combines:
+  - Base models  
+  - Style models  
+  - Multiple enhancement LoRAs
+- Includes a **utility workflow** for saving and reusing complex text prompts.
+- Integrated **Optical Character Recognition (OCR)** to read text from images.
+- A **high-resolution upscaling stage** for sharper, more detailed outputs.
+
+---
+
+### 🌐 Modern & Responsive Frontend
+
+- Clean, fast, and intuitive web interface built with:
+  - **React**
+  - **Vite**
+  - **ShadCN UI**
+- Designed for a seamless and responsive user experience across devices.
 
 ## Project Structure
 
