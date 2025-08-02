@@ -9,7 +9,7 @@
  * - Production: "https://your-comfyui-domain.com"
  */
 
-export const BACKEND_COMFYUI_URL = "https://your-ngrok-url.ngrok-free.app";
+export const BACKEND_COMFYUI_URL = "https://18eb78428c5c.ngrok-free.app";
 
 /**
  * ComfyUI backend configuration object with additional settings
