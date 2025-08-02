@@ -50,7 +50,7 @@ EdiGenAI is a versatile and powerful web application for AI image generation, of
 
 ### Backend & Workflows
 
-* **`comfui-backend`**: Contains a custom `comfy-runner` script for launching and managing the ComfyUI instance, along with utilities for downloading and organizing required models. After running the `comfy-runner` the user had to run the `models_downloading.ipynb` file which downloads the entire model. 
+* **`comfui-backend`**: Contains a custom `comfy-runner` script for launching and managing the ComfyUI instance, along with utilities for downloading and organizing required models. After running the `comfy-runner` the user has to run the `models_downloading.ipynb` file which downloads the entire model. 
 * **`sd-backend`**: Holds the necessary configurations and scripts for the core Stable Diffusion backend.
   
 ### Workflows
