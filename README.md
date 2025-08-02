@@ -28,10 +28,10 @@ Magic Control Canvas is a versatile and powerful web application for AI image ge
 - Full support for a wide range of **LoRA models** across both backends.
 - Specialized LoRAs for **text preservation** and **image enhancement** (e.g., `Ace++`, `catvton-flux-try-on`).
 - **Advanced model stacking** combines:
-  - Base models  
+  - Base models  fp8
   - Style models  
   - Multiple enhancement LoRAs
-- Includes a **utility workflow** for saving and reusing complex text prompts.
+- Includes a **utility workflow** for saving and reusing complex text prompts. it uses the conditioning we make through the other workflow which replaces the use of both dual clip and t5 and reduces ram by 8gv  and mask that test area for further inpainting for imprvon the text inside the watch
 - Integrated **Optical Character Recognition (OCR)** to read text from images.
 - A **high-resolution upscaling stage** for sharper, more detailed outputs.
 
@@ -51,12 +51,12 @@ Magic Control Canvas is a versatile and powerful web application for AI image ge
 
 ### Backend & Workflows
 
-* **`comfui-backend`**: Contains a custom `comfy-runner` script for launching and managing the ComfyUI instance, along with utilities for downloading and organizing required models.
+* **`comfui-backend`**: Contains a custom `comfy-runner` script for launching and managing the ComfyUI instance, along with utilities for downloading and organizing required models. after running the comfy runner the user had to run the whole model downloading file which downlaod whole model, 
 * **`sd-backend`**: Holds the necessary configurations and scripts for the core Stable Diffusion backend.
   
 ### Workflows
 
-This directory contains pre-built graphs. The star is `multipipeline_watch.json`, a complex workflow designed to generate highly detailed watches by isolating and manipulating the text on the watch face.
+This directory contains pre-built graphs. The star is `multipipeline_watch.json`, a complex workflow designed to generate highly detailed watches by isolating and manipulating the text on the watch face. and one more workflow whcih is other pipeline final which si used for other try on other than watch 
 
 ### Custom Nodes
 
@@ -65,10 +65,10 @@ This project introduces several powerful custom nodes to enhance your generative
 * **`Upscaler`**: A node for high-resolution image upscaling.
 * **`PaddleOCR`**: Integrates PaddleOCR for robust text recognition directly within your workflow. Useful for reading text from generated or existing images.
 * **`Handwrist Automasking`**: Automatically detects and creates masks for hands and wrists, perfect for generating realistic product placements or virtual try-ons.
-* **`Conditioning`**: Provides advanced options for model and prompt conditioning, giving you finer control over the output.
+* **`Conditioning`**: Provides advanced options for model and prompt conditioning, giving you finer control over the output. replaces use of clip and t5
 * **`Watch`**: A specialized node set for watch generation:
     * **Mask Watch Face**: Precisely masks the inside circular area of a watch dial. This is essential for isolating the face to apply text or other details accurately.
-    * **Flux Optimizer**: A helper node designed to work with the watch masker, optimizing the generative process for clarity and precision on the watch face.
+* **Flux Model Optimizer**: A helper node designed to work with the watch masker, optimizing the generative process for clarity and precision on the watch face. which compiles the model and increaes in inference speed 
 
 ### Results
 
@@ -81,8 +81,7 @@ You can choose to set up and run either the ComfyUI backend or the `diffusers` b
 ### 1. Frontend Setup
 
 To run the web interface, navigate to the `Frontend_VERCEL` directory and follow these steps:
-
-```sh
+/comfyui/custom_nodes in the custom nodes folder```sh
 # Navigate to the frontend directory
 cd Frontend_VERCEL
 
@@ -91,7 +90,6 @@ npm install
 
 # Start the development server
 npm run dev
-```
 
 The frontend will be available at `http://localhost:5173`. You will need to configure the backend URL in the frontend code to point to the address of your chosen backend server.
 
@@ -108,20 +106,18 @@ This backend is ideal for running complex, customized workflows.
 2.  **Install Custom Nodes**: Copy the contents of the `ComfyUI_New_NODES` directory into the `ComfyUI/custom_nodes/` directory of your ComfyUI installation.
 
 3.  **Install Dependencies**: Install the required Python packages for the custom nodes by running:
-    ```sh
+    ```sh clone this github
     pip install -r ComfyUI_New_NODES/ComfyUI-HandWristMask/requirements.txt
     pip install -r ComfyUI_New_NODES/Comfyui_FLUX_Optimizer/requirements.txt
     pip install -r ComfyUI_New_NODES/Comfyui_paddleocr/requirements.txt
     pip install -r ComfyUI_New_NODES/comfyui_watch/requirements.txt
     ```
 
-4.  **Run the Workflow**: Execute the `multi_pipeline_python.py` script to start the image generation process:
-    ```sh
-    python Comfyui_backend/multi_pipeline_python.py
-    ```
+in the mdoel dowqnloadin filw u have to replace <your-huggingface-token>
+
 
 #### Option B: Diffusers Backend
-
+and in the sdxl backend file you had to put your ngrok auth token in the last cell
 This backend provides a more conventional API for image generation and includes advanced features like automatic LoRA selection.
 
 1.  **Install Dependencies**: Navigate to the `SD_Backend` directory and install the required Python packages:
@@ -133,9 +129,9 @@ This backend provides a more conventional API for image generation and includes 
 This project includes a variety of custom ComfyUI nodes to extend its capabilities. Here's an overview of the available custom nodes:
 
 -   **ComfyUI-HandWristMask**: Provides nodes for creating masks for hands and wrists, useful for inpainting and other targeted modifications.
--   **Comfyui_FLUX_Optimizer**: Contains optimizations for the FLUX model.
+-   **Comfyui_FLUX_Optimizer**: Contains optimizations for the FLUX model. # and compiler for flux model
 -   **Comfyui_conditioning**: Manages and caches conditioning data, such as text embeddings.
--   **Comfyui_paddleocr**: Integrates PaddleOCR for optical character recognition.
+-   **Comfyui_paddleocr**: Integrates PaddleOCR for optical character recognition. and masking the region
 -   **Comfyui_upscale**: A collection of nodes for upscaling images.
 -   **comfyui_watch**: Includes a node to detect watches in an image, which can be used for inpainting or style transfer.
 
@@ -143,8 +139,7 @@ To use these nodes, copy their respective directories into the `ComfyUI/custom_n
 
 ## Workflows
 
-The `workflows/` directory contains pre-defined ComfyUI workflows in JSON format. These can be loaded directly into the ComfyUI interface to quickly set up and run complex image generation pipelines. The `multi_pipeline_python.py` script is a Python-based implementation of one of these workflows.
-
+The `workflows/` directory contains pre-defined ComfyUI workflows in JSON format. These can be loaded directly into the ComfyUI interface to quickly set up and run complex image generation pipelines. 4. copy the owrkdflow in /comyui_data/user/defualt/workflows in wolfer and restart the comfyui interface fromthe manager 
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
