@@ -30,7 +30,7 @@ const Img2ImgPreview = ({
   const renderPreview = () => {
     if (!inputImage) {
       return (
-        <div className="w-full h-96 bg-slate-900/50 border-2 border-dashed border-slate-600 rounded-lg flex items-center justify-center">
+        <div className="w-full h-96 bg-slate-900/50 border-2 border-dashed border-slate-600 hover:border-green-500 rounded-lg flex items-center justify-center">
           <div className="text-center">
             <ImageIcon className="w-16 h-16 text-slate-500 mx-auto mb-4" />
             <p className="text-slate-400">Upload an image to see preview</p>
