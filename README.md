@@ -172,11 +172,7 @@ This backend provides a more conventional API for image generation and includes 
     cd sd-backend
     pip install -r requirements.txt
     ```
-2. **Run the Backend Server**:
-   ```sh
-   bash start-sd.sh
-   ```
-3. **Ngrok Tunnel for Public Access**: If running in a notebook or remotely, the last cell of the notebook should include your Ngrok auth token to expose the server:
+2. **Ngrok Tunnel for Public Access**: Run the notebook and the last cell of the notebook should include your Ngrok auth token to expose the server:
    ``` sh
    ngrok config add-authtoken <your-ngrok-auth-token>
    ngrok http 8000
