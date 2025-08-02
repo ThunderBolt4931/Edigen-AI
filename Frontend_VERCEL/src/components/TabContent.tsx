@@ -32,6 +32,8 @@ interface TabContentProps {
   onError: (message: string) => void;
   activeSubTab: string;
   setActiveSubTab: (tab: string) => void;
+  selectedModel: string;
+  setSelectedModel: (model: string) => void;
 }
 
 const TabContent = ({
@@ -57,7 +59,9 @@ const TabContent = ({
   onImageError,
   onError,
   activeSubTab,
-  setActiveSubTab
+  setActiveSubTab,
+  selectedModel,
+  setSelectedModel
 }: TabContentProps) => {
   return (
     <>
@@ -117,6 +121,8 @@ const TabContent = ({
               onImageLoad={onImageLoad}
               onImageError={onImageError}
               onError={onError}
+              selectedModel={selectedModel}
+              setSelectedModel={setSelectedModel}
             />
           </TabsContent>
 
