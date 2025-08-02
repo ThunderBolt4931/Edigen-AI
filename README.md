@@ -16,7 +16,6 @@ Magic Control Canvas is a versatile and powerful web application for AI image ge
 - Built on the high-performance **FLUX** model for efficient and realistic manipulations.
 - Features a **multi-stage inpainting process** that:
   - Intelligently crops the image
-  - Regenerates missing content
   - Seamlessly stitches it back into the original
 - Includes **automated precision masking** for accessories like watches.
 - Supports **automatic hand and wrist masking** for realistic and aligned placements.
@@ -27,7 +26,7 @@ Magic Control Canvas is a versatile and powerful web application for AI image ge
 ### 🧩 Extensive Model & Customization Support
 
 - Full support for a wide range of **LoRA models** across both backends.
-- Specialized LoRAs for **text preservation** and **image enhancement** (e.g., `ace++`).
+- Specialized LoRAs for **text preservation** and **image enhancement** (e.g., `Ace++`, `catvton-flux-try-on`).
 - **Advanced model stacking** combines:
   - Base models  
   - Style models  
