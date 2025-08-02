@@ -216,12 +216,12 @@ Copy the workflow in /Comyui_data/user/default/workflows in folder and restart t
 ---
 
 This project utilizes several key libraries and tools. Below are links to their official documentation and repositories.
-* **Flux Fill**: The base model used in the ComfyUI workflow, responsible for the foundational image structure.(https://huggingface.co/black-forest-labs/FLUX.1-Fill-dev)
+* **Flux Fill**: The base model used in the ComfyUI workflow, responsible for the foundational image structure.[FLUX.1-Fill](https://huggingface.co/black-forest-labs/FLUX.1-Fill-dev)
 * **Flux Redux**: The style model that applies artistic or stylistic elements to the base image generation. It acts as an adapter for FLUX.1 base models to generate image variations. 
-(https://huggingface.co/black-forest-labs/FLUX.1-Redux-dev)
-* **CLIP (Contrastive Language–Image Pre-training)**: The model used for text conditioning, which interprets text prompts to guide the image generation process. (https://github.com/openai/CLIP)
-* **Ace++ LoRAs**: A set of LoRA models designed to maintain character and item consistency when using Flux Fill. It includes specific models for portraits and subjects. (https://huggingface.co/ali-vilab/ACE_Plus)
-* **catvton-flux-try-on**: A state-of-the-art virtual try-on solution that combines the power of CatVTON with the Flux inpainting model for realistic clothing transfer. (https://github.com/nftblackmagic/catvton-flux)
+[FLUX.1-Redux](https://huggingface.co/black-forest-labs/FLUX.1-Redux-dev)
+* **CLIP (Contrastive Language–Image Pre-training)**: The model used for text conditioning, which interprets text prompts to guide the image generation process. [CLIP](https://github.com/openai/CLIP)
+* **Ace++ LoRAs**: A set of LoRA models designed to maintain character and item consistency when using Flux Fill. It includes specific models for portraits and subjects. [Ace++](https://huggingface.co/ali-vilab/ACE_Plus)
+* **catvton-flux-try-on**: A state-of-the-art virtual try-on solution that combines the power of CatVTON with the Flux inpainting model for realistic clothing transfer. [catvton-flux-try-on](https://github.com/nftblackmagic/catvton-flux)
 
 ---
 
