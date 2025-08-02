@@ -44,7 +44,7 @@ const Index = () => {
       {/* Background Spline 3D iframe */}
       <div className="fixed inset-0 z-0">
         <iframe 
-          src='https://my.spline.design/dotwaves-FR8HGbfFmjLusADTS6cmnWBP/' 
+          src='https://my.spline.design/retrofuturisticcircuitloop-2mNopvKV8SQWJs2nPRvrxDyH/' 
           frameBorder='0' 
           width='100%' 
           height='100%'
