@@ -22,6 +22,7 @@ const Txt2ImgPage = () => {
     guidanceScale,
     controlImage,
     loraScales,
+    selectedModel,
     setPrompt,
     setWidth,
     setHeight,
@@ -29,6 +30,7 @@ const Txt2ImgPage = () => {
     setGuidanceScale,
     setControlImage,
     setLoraScales,
+    setSelectedModel,
     handleGenerate,
     handleImageLoad,
     handleImageError
@@ -47,7 +49,7 @@ const Txt2ImgPage = () => {
       {/* Background Spline 3D iframe */}
       <div className="fixed top-[10px] left-[-86px] w-[120%] h-[120%] z-0">
           <iframe 
-              src='https://my.spline.design/retrofuturisticcircuitloop-2mNopvKV8SQWJs2nPRvrxDyH/' 
+              src='https://my.spline.design/retrofuturisticcircuitloop-mMGk86WKmMW9qCpLyPQkAZR0/' 
               frameBorder='0' 
               width='100%' 
               height='100%' 
@@ -96,6 +98,8 @@ const Txt2ImgPage = () => {
               onImageLoad={handleImageLoad}
               onImageError={handleImageError}
               onError={addError}
+              selectedModel={selectedModel}
+              setSelectedModel={setSelectedModel}
             />
           </div>
         </div>
