@@ -196,7 +196,7 @@ This project includes a variety of custom ComfyUI nodes to extend its capabiliti
 
     - **Find Outputs**: Your generated images will be saved in the `ComfyUI/output/` directory.
 - 📄 **Comfyui_paddleocr**: Integrates PaddleOCR for optical character recognition and masking of the region
-- 📈 **Comfyui_upscale**: A collection of nodes for upscaling images.
+- 📈 **Comfyui_upscale**: A collection of nodes for upscaling images. `ComfyUI/custom_nodes` has a folder `ComfyUI/Comfyroll/CustomNodes/nodes` with python files `functions_upscale.py` and `nodes_upscale.py`. User has to replace both of them with our files ComfyUI/comfy_extras/nodes_upscale_model.py user has to replace with our file namesd comfyUI-extras-
 - ⌚ **comfyui_watch**: Includes a node to detect watches in an image, which can be used for inpainting or style transfer.
 To use these nodes, copy their respective directories into the `ComfyUI/custom_nodes/` directory of your ComfyUI installation.
 
@@ -207,7 +207,7 @@ To use these nodes, copy their respective directories into the `ComfyUI/custom_n
 ---
 
 The `workflows/` directory contains pre-defined ComfyUI workflows in JSON format. These can be loaded directly into the ComfyUI interface to quickly set up and run complex image generation pipelines.
-Copy the workflow in /Comyui_data/user/default/workflows in folder and restart the Comfyui Interface from the Manager.
+Copy the workflow in /ComfyUI_data/user/default/workflows in folder and restart the ComfyUI Interface from the Manager. After loading it in the interface, the user has to click Manager and then Select All for installing all the Missing Nodes.
 
 ---
 
@@ -222,7 +222,7 @@ This project utilizes several key libraries and tools. Below are links to their 
 * **CLIP (Contrastive Language–Image Pre-training)**: The model used for text conditioning, which interprets text prompts to guide the image generation process. [CLIP](https://github.com/openai/CLIP)
 * **Ace++ LoRAs**: A set of LoRA models designed to maintain character and item consistency when using Flux Fill. It includes specific models for portraits and subjects. [Ace++](https://huggingface.co/ali-vilab/ACE_Plus)
 * **catvton-flux-try-on**: A state-of-the-art virtual try-on solution that combines the power of CatVTON with the Flux inpainting model for realistic clothing transfer. [catvton-flux-try-on](https://github.com/nftblackmagic/catvton-flux)
-
+paddle ocr, comfyroll custom nodes, comfy ui, 
 ---
 
 ## Contributing 🤝
