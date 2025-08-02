@@ -24,6 +24,8 @@ interface PlaygroundContentProps {
   onImageLoad: () => void;
   onImageError: (e: React.SyntheticEvent<HTMLImageElement, Event>) => void;
   onError?: (message: string) => void;
+  selectedModel: string;
+  setSelectedModel: (model: string) => void;
 }
 
 const PlaygroundContent = ({
@@ -47,11 +49,12 @@ const PlaygroundContent = ({
   onGenerate,
   onImageLoad,
   onImageError,
-  onError
+  onError,
+  selectedModel,
+  setSelectedModel
 }: PlaygroundContentProps) => {
   const [generatedImageState, setGeneratedImageState] = useState<string | null>(null);
   const [autoGenMetadata, setAutoGenMetadata] = useState<any>(null);
-  const [selectedModel, setSelectedModel] = useState<string>("SDXL Base");
 
   // Sync local state with prop changes
   useEffect(() => {
