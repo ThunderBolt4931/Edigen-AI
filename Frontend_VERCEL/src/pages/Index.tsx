@@ -23,6 +23,7 @@ const Index = () => {
     guidanceScale,
     controlImage,
     loraScales,
+    selectedModel,
     setPrompt,
     setWidth,
     setHeight,
@@ -30,6 +31,7 @@ const Index = () => {
     setGuidanceScale,
     setControlImage,
     setLoraScales,
+    setSelectedModel,
     handleGenerate,
     handleImageLoad,
     handleImageError
@@ -44,7 +46,7 @@ const Index = () => {
       {/* Background Spline 3D iframe */}
       <div className="fixed inset-0 z-0">
         <iframe 
-          src='https://my.spline.design/retrofuturisticcircuitloop-2mNopvKV8SQWJs2nPRvrxDyH/' 
+          src='https://my.spline.design/dotwaves-FR8HGbfFmjLusADTS6cmnWBP/' 
           frameBorder='0' 
           width='100%' 
           height='100%'
@@ -83,6 +85,8 @@ const Index = () => {
               onError={addError}
               activeSubTab={activeSubTab}
               setActiveSubTab={setActiveSubTab}
+              selectedModel={selectedModel}
+              setSelectedModel={setSelectedModel}
             />
           </Tabs>
         </div>
