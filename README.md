@@ -211,7 +211,7 @@ Copy the workflow in /ComfyUI_data/user/default/workflows in folder and restart 
 
 ---
 
-## Models and Resources 📚
+## Credits 📚
 
 ---
 
@@ -222,23 +222,9 @@ This project utilizes several key libraries and tools. Below are links to their 
 * **CLIP (Contrastive Language–Image Pre-training)**: The model used for text conditioning, which interprets text prompts to guide the image generation process. [CLIP](https://github.com/openai/CLIP)
 * **Ace++ LoRAs**: A set of LoRA models designed to maintain character and item consistency when using Flux Fill. It includes specific models for portraits and subjects. [Ace++](https://huggingface.co/ali-vilab/ACE_Plus)
 * **catvton-flux-try-on**: A state-of-the-art virtual try-on solution that combines the power of CatVTON with the Flux inpainting model for realistic clothing transfer. [catvton-flux-try-on](https://github.com/nftblackmagic/catvton-flux)
-paddle ocr, comfyroll custom nodes, comfy ui, 
----
-
-## Contributing 🤝
-
----
-
-Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
-
-1.  Fork the repository.
-2.  Create a new branch (`git checkout -b feature/your-feature-name`).
-3.  Make your changes and commit them (`git commit -m 'Add some feature'`).
-4.  Push to the branch (`git push origin feature/your-feature-name`).
-5.  Open a pull request.
-
-Please make sure to update tests as appropriate.
-
+* **Paddle-OCR**: [Paddle OCR](https://github.com/civen-cn/ComfyUI-PaddleOcr)
+* **ComfyUI_Comfyroll_CustomNodes**: [Custom Nodes](https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes)
+* **ComfyUI**: [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 ---
 
 ## License 📜
