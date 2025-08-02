@@ -2410,10 +2410,29 @@ export const ComfyUITab = () => {
     const updatedWorkflow = JSON.parse(JSON.stringify(workflow));
 
     // Different node titles based on selected accessory
+    const conditioningMap: { [key: string]: string } = {
+      watch: 'prompt_conditioning_watch.safetensors',
+      cap: 'prompt_conditioning_cap.safetensors',
+      bracelet: 'prompt_conditioning_bracelets.safetensors',
+    };
+    const conditioningFilename = conditioningMap[selectedAccessory] || 'prompt_conditioning_Watch.safetensors';
     const destinationNodeTitle = selectedAccessory === 'watch' ? "Insert hand" : "Other insert";
     const objectNodeTitle = selectedAccessory === 'watch' ? "Insert object" : "Other insert object";
     const maskNodeTitle = selectedAccessory === 'watch' ? "Insert Mask" : "Load Other Mask";
-    let destinationNodeId, objectNodeId, maskNodeId;
+    let destinationNodeId, objectNodeId, maskNodeId, conditioningNodeId;
+    // Find the "Load Conditioning" node in the current workflow
+    const conditioningNodeTitle = "Load Conditioning";
+    for (const id in updatedWorkflow) {
+      if (updatedWorkflow[id]._meta?.title === conditioningNodeTitle) {
+        conditioningNodeId = id;
+        break; // Stop looking once we've found it
+      }
+    }
+
+    // If the node was found, update its filename input
+    if (conditioningNodeId) {
+      updatedWorkflow[conditioningNodeId].inputs.filename = conditioningFilename;
+    }
     for (const id in updatedWorkflow) {
       if (updatedWorkflow[id]._meta?.title === destinationNodeTitle) destinationNodeId = id;
       if (updatedWorkflow[id]._meta?.title === objectNodeTitle) objectNodeId = id;
