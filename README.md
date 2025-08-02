@@ -1,9 +1,15 @@
-# EdiGen AI
+# EdiGen AI 🤖✨
 EdiGenAI is a versatile and powerful web application for AI image generation, offering a rich set of features for both beginners and advanced users. It provides a user-friendly interface to interact with multiple backend systems, including a sophisticated ComfyUI-based pipeline and a flexible Stable Diffusion-based server.
 
-## Key Features
+---
+
+## Key Features 🚀
+
+---
 
 ### ⚙️ Flexible Dual-Backend Architecture
+
+---
 
 - A streamlined **Diffusers-based backend** (powered by FastAPI) for core text-to-image tasks, using a **custom-pruned SDXL model** optimized for speed and performance.
 - A powerful **ComfyUI backend** dedicated to advanced image manipulation, inpainting, and the virtual try-on pipeline.
@@ -11,6 +17,8 @@ EdiGenAI is a versatile and powerful web application for AI image generation, of
 ---
 
 ### 🧠 Advanced Virtual Try-On & Inpainting Pipeline
+
+---
 
 - Built on the high-performance **FLUX** model for efficient and realistic manipulations.
 - Features a **multi-stage inpainting process** that:
@@ -23,6 +31,8 @@ EdiGenAI is a versatile and powerful web application for AI image generation, of
 ---
 
 ### 🧩 Extensive Model & Customization Support
+
+---
 
 - Full support for a wide range of **LoRA models** across both backends.
 - Specialized LoRAs for **text preservation** and **image enhancement** (e.g., `Ace++`, `catvton-flux-try-on`).
@@ -38,26 +48,44 @@ EdiGenAI is a versatile and powerful web application for AI image generation, of
 
 ### 🌐 Modern & Responsive Frontend
 
+---
+
 - Clean, fast, and intuitive web interface built with:
   - **React**
   - **Vite**
   - **ShadCN UI**
 - Designed for a seamless and responsive user experience across devices.
 
+---
+
 ## Project Structure
+
+---
 
 ## 🧩 Key Components Breakdown
 
-### Backend & Workflows
+---
+
+### Backend & Workflows 🖥️
+
+---
 
 * **`comfui-backend`**: Contains a custom `comfy-runner` script for launching and managing the ComfyUI instance, along with utilities for downloading and organizing required models. After running the `comfy-runner` the user has to run the `models_downloading.ipynb` file which downloads the entire model. 
 * **`sd-backend`**: Holds the necessary configurations and scripts for the core Stable Diffusion backend.
+
+---
   
-### Workflows
+### Workflows 📊
+
+---
 
 This directory contains pre-built graphs. The star is `multipipeline_watch.json`, a complex workflow designed to generate highly detailed watches by isolating and manipulating the text on the watch face and another workflow which is `other_pipeline_final.json` which is used for other types of Try-On features different from the watch.
 
-### Custom Nodes
+---
+
+### Custom Nodes 🔌
+
+---
 
 This project introduces several powerful custom nodes to enhance your generative pipelines:
 
@@ -69,15 +97,23 @@ This project introduces several powerful custom nodes to enhance your generative
     * **Mask Watch Face**: Precisely masks the inside circular area of a watch dial. This is essential for isolating the face to apply text or other details accurately.
 * **Flux Model Optimizer**: A helper node designed to work with the watch masker, optimizing the generative process for clarity and precision on the watch face. which compiles the model and increaes in inference speed 
 
-### Results
+---
+
+### Results 🖼️
+
+---
 
 The `results/` contains example images generated using the workflows and custom nodes in this repository. Check them out to see what's possible!
 
-## Setup and Usage
+---
+
+## Setup and Usage 🛠️
+
+---
 
 You can choose to set up and run either the ComfyUI backend or the SD backend, depending on your needs.
 
-### 1. Frontend Setup
+### 1. Frontend Setup 🌐
 
 To run the web interface, navigate to the `Frontend_VERCEL` directory and follow these steps:
 ```sh
@@ -93,7 +129,11 @@ npm run dev
 
 The frontend will be available at `http://localhost:5173`. You will need to configure the backend URL in the frontend code to point to the address of your chosen backend server.
 
-### 2. Backend Setup
+---
+
+### 2. Backend Setup ⚙️
+
+---
 
 You can choose one of the two available backends.
 
@@ -143,25 +183,46 @@ This backend provides a more conventional API for image generation and includes 
    ```
 Copy the generated public URL and set it in the frontend config.
 
-## Custom ComfyUI Nodes
+---
+
+## Custom ComfyUI Nodes 🔌
+
+---
+
 
 This project includes a variety of custom ComfyUI nodes to extend its capabilities. Here's an overview of the available custom nodes:
 
--   **ComfyUI-HandWristMask**: Provides nodes for creating masks for hands and wrists, useful for inpainting and other targeted modifications.
--   **Comfyui_FLUX_Optimizer**: Contains optimizations for the FLUX model. # and compiler for flux model
--   **Comfyui_conditioning**: Manages and caches conditioning data, such as text embeddings.
--   **Comfyui_paddleocr**: Integrates PaddleOCR for optical character recognition and masking of the region
--   **Comfyui_upscale**: A collection of nodes for upscaling images.
--   **comfyui_watch**: Includes a node to detect watches in an image, which can be used for inpainting or style transfer.
+- 👋 **ComfyUI-HandWristMask**: Provides nodes for creating masks for hands and wrists, useful for inpainting and other targeted modifications.
+- ⚡ **Comfyui_FLUX_Optimizer**: Contains optimizations for the FLUX model. # and compiler for flux model
+- 🔗 **Comfyui_conditioning**: Manages and caches conditioning data, such as text embeddings. Here are the essential steps to use the custom conditioning models.
+    - **Place Models**: Put the following files into the `ComfyUI/models/conditioning/` directory:
+          -prompt_conditioning_bracelets.safetensors
+          -prompt_conditioning_cap.safetensors
+          -prompt_conditioning_watch.safetensors
 
+    - **Load Models**: In your ComfyUI workflow, load the models from the `conditioning` subfolder.
+
+    - **Find Outputs**: Your generated images will be saved in the `ComfyUI/output/` directory.
+- 📄 **Comfyui_paddleocr**: Integrates PaddleOCR for optical character recognition and masking of the region
+- 📈 **Comfyui_upscale**: A collection of nodes for upscaling images.
+- ⌚ **comfyui_watch**: Includes a node to detect watches in an image, which can be used for inpainting or style transfer.
 To use these nodes, copy their respective directories into the `ComfyUI/custom_nodes/` directory of your ComfyUI installation.
 
-## Workflows
+---
+
+## Workflows 📊
+
+---
 
 The `workflows/` directory contains pre-defined ComfyUI workflows in JSON format. These can be loaded directly into the ComfyUI interface to quickly set up and run complex image generation pipelines.
 Copy the workflow in /Comyui_data/user/default/workflows in folder and restart the Comfyui Interface from the Manager.
 
-## Models and Resources 
+---
+
+## Models and Resources 📚
+
+---
+
 This project utilizes several key libraries and tools. Below are links to their official documentation and repositories.
 * **Flux Fill**: The base model used in the ComfyUI workflow, responsible for the foundational image structure.(https://huggingface.co/black-forest-labs/FLUX.1-Fill-dev)
 * **Flux Redux**: The style model that applies artistic or stylistic elements to the base image generation. It acts as an adapter for FLUX.1 base models to generate image variations. 
@@ -170,7 +231,11 @@ This project utilizes several key libraries and tools. Below are links to their 
 * **Ace++ LoRAs**: A set of LoRA models designed to maintain character and item consistency when using Flux Fill. It includes specific models for portraits and subjects. (https://huggingface.co/ali-vilab/ACE_Plus)
 * **catvton-flux-try-on**: A state-of-the-art virtual try-on solution that combines the power of CatVTON with the Flux inpainting model for realistic clothing transfer. (https://github.com/nftblackmagic/catvton-flux)
 
-## Contributing
+---
+
+## Contributing 🤝
+
+---
 
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
 
@@ -182,6 +247,10 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 
 Please make sure to update tests as appropriate.
 
-## License
+---
+
+## License 📜
+
+---
 
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
