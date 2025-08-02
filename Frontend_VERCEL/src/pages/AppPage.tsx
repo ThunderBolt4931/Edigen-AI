@@ -69,15 +69,15 @@ const AppPage = () => {
   return (
     <>
       {/* Background Spline 3D iframe */}
-      <div className="fixed top-[10px] left-[-120px] w-[120%] h-[120%] z-0">
+      <div className="fixed top-[10px] left-[-86px] w-[120%] h-[120%] z-0">
           <iframe 
-              src='https://my.spline.design/retrofuturisticcircuitloop-mMGk86WKmMW9qCpLyPQkAZR0/' 
+              src='https://my.spline.design/retrofuturisticcircuitloop-2mNopvKV8SQWJs2nPRvrxDyH/' 
               frameBorder='0' 
               width='100%' 
               height='100%' 
               className="pointer-events-none"
-          />
-      </div>
+          />
+      </div>
       
       <div className="min-h-screen bg-transparent relative z-10">
         <AppHeader />
