@@ -252,7 +252,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
         1
       ],
       "model": [
-        "344",
+        "345",
         0
       ]
     },
@@ -413,7 +413,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
         0
       ],
       "image": [
-        "190",
+        "187",
         0
       ]
     },
@@ -486,7 +486,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
   },
   "163": {
     "inputs": {
-      "noise_seed": 993192807042492
+      "noise_seed": 522921034946146
     },
     "class_type": "RandomNoise",
     "_meta": {
@@ -504,6 +504,19 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
     "class_type": "FluxGuidance",
     "_meta": {
       "title": "FluxGuidance"
+    }
+  },
+  "171": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "346",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "Convert Image to Mask"
     }
   },
   "176": {
@@ -561,7 +574,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
       "condition": "always",
       "multiple_of": 0,
       "image": [
-        "190",
+        "187",
         0
       ]
     },
@@ -600,7 +613,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
         0
       ],
       "mask": [
-        "358",
+        "171",
         0
       ]
     },
@@ -626,26 +639,11 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
   },
   "187": {
     "inputs": {
-      "image": "watch_6.jpg"
+      "image": "pexels-pixabay-68201 (2).jpg"
     },
     "class_type": "LoadImage",
     "_meta": {
       "title": "Insert object"
-    }
-  },
-  "190": {
-    "inputs": {
-      "upscale_model": "4x_NMKD-Siax_200k.pth",
-      "resampling_method": "lanczos",
-      "supersample": "true",
-      "image": [
-        "187",
-        0
-      ]
-    },
-    "class_type": "CR Upscale Image",
-    "_meta": {
-      "title": "🔍 CR Upscale Image"
     }
   },
   "191": {
@@ -685,7 +683,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
   },
   "200": {
     "inputs": {
-      "image": "clipspace/clipspace-mask-15698059.599999964.png [input]"
+      "image": "clipspace/clipspace-mask-518788.3000000119.png [input]"
     },
     "class_type": "LoadImage",
     "_meta": {
@@ -738,7 +736,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
     "inputs": {
       "image_strength": "high",
       "conditioning": [
-        "351",
+        "327",
         0
       ],
       "style_model": [
@@ -856,7 +854,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
   },
   "225": {
     "inputs": {
-      "noise_seed": 883063622390318
+      "noise_seed": 510217267898810
     },
     "class_type": "RandomNoise",
     "_meta": {
@@ -957,7 +955,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
         1
       ],
       "model": [
-        "344",
+        "345",
         0
       ]
     },
@@ -1136,7 +1134,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
         0
       ],
       "mask": [
-        "356",
+        "312",
         0
       ]
     },
@@ -1247,7 +1245,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
   "287": {
     "inputs": {
       "mask": [
-        "356",
+        "312",
         0
       ]
     },
@@ -1271,7 +1269,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
   "308": {
     "inputs": {
       "images": [
-        "324",
+        "347",
         0
       ]
     },
@@ -1292,8 +1290,34 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
       "title": "Preview Image"
     }
   },
+  "312": {
+    "inputs": {
+      "dp": 1.2,
+      "param1": 100,
+      "param2": 80,
+      "min_dist_factor": 0.2,
+      "min_radius_factor": 0.010000000000000002,
+      "max_radius_factor": 0.4,
+      "bg_red": 220,
+      "bg_green": 220,
+      "bg_blue": 220,
+      "image": [
+        "186",
+        0
+      ]
+    },
+    "class_type": "WatchDetector",
+    "_meta": {
+      "title": "Watch Detector"
+    }
+  },
   "316": {
-    "inputs": {},
+    "inputs": {
+      "images": [
+        "312",
+        1
+      ]
+    },
     "class_type": "PreviewImage",
     "_meta": {
       "title": "Preview Image"
@@ -1311,6 +1335,21 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
       "title": "🔧 Mask Preview"
     }
   },
+  "318": {
+    "inputs": {
+      "upscale_model": "4x_NMKD-Siax_200k.pth",
+      "resampling_method": "lanczos",
+      "supersample": "true",
+      "image": [
+        "187",
+        0
+      ]
+    },
+    "class_type": "CR Upscale Image",
+    "_meta": {
+      "title": "🔍 CR Upscale Image"
+    }
+  },
   "319": {
     "inputs": {
       "dp": 1.2,
@@ -1323,7 +1362,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
       "bg_green": 220,
       "bg_blue": 220,
       "image": [
-        "190",
+        "318",
         0
       ]
     },
@@ -1332,75 +1371,13 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
       "title": "Watch Detector"
     }
   },
-  "322": {
-    "inputs": {
-      "model_name": "4x_NMKD-Siax_200k.pth"
-    },
-    "class_type": "UpscaleModelLoader",
-    "_meta": {
-      "title": "Load Upscale Model"
-    }
-  },
-  "324": {
-    "inputs": {
-      "upscale_model": [
-        "322",
-        0
-      ],
-      "image": [
-        "262",
-        0
-      ]
-    },
-    "class_type": "ImageUpscaleWithModel",
-    "_meta": {
-      "title": "Upscale Image (using Model)"
-    }
-  },
   "327": {
     "inputs": {
-      "filename": "prompt_conditioning.safetensors"
+      "filename": "prompt_conditioning_watch.safetensors"
     },
     "class_type": "LoadConditioningNode",
     "_meta": {
       "title": "Load Conditioning"
-    }
-  },
-  "333": {
-    "inputs": {
-      "model_name": "4x_NMKD-Siax_200k.pth"
-    },
-    "class_type": "UpscaleModelLoader",
-    "_meta": {
-      "title": "Load Upscale Model"
-    }
-  },
-  "334": {
-    "inputs": {
-      "upscale_model": [
-        "333",
-        0
-      ],
-      "image": [
-        "178",
-        0
-      ]
-    },
-    "class_type": "ImageUpscaleWithModel",
-    "_meta": {
-      "title": "Upscale Image (using Model)"
-    }
-  },
-  "335": {
-    "inputs": {
-      "images": [
-        "334",
-        0
-      ]
-    },
-    "class_type": "PreviewImage",
-    "_meta": {
-      "title": "Image Pipeline 1"
     }
   },
   "344": {
@@ -1417,104 +1394,42 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
       "title": "LoraLoaderModelOnly"
     }
   },
-  "347": {
+  "345": {
     "inputs": {
-      "filename_prefix": "Image Pipeline 1",
-      "images": [
-        "334",
+      "lora_name": "pytorch_lora_weights.safetensors",
+      "strength_model": 0.6000000000000001,
+      "model": [
+        "344",
         0
       ]
     },
-    "class_type": "SaveImage",
+    "class_type": "LoraLoaderModelOnly",
     "_meta": {
-      "title": "Save Image"
+      "title": "LoraLoaderModelOnly"
     }
   },
-  "350": {
+  "346": {
     "inputs": {
-      "clip_name1": "t5xxl_fp8_e4m3fn.safetensors",
-      "clip_name2": "clip_l.safetensors",
-      "type": "flux",
-      "device": "default"
-    },
-    "class_type": "DualCLIPLoader",
-    "_meta": {
-      "title": "DualCLIPLoader"
-    }
-  },
-  "351": {
-    "inputs": {
-      "text": [
-        "352",
-        0
-      ],
-      "clip": [
-        "350",
-        0
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "352": {
-    "inputs": {
-      "value": "'BALMAIN' text is above part of the watch inside and 'SWISS MADE' is below inside the watch face in clear, detailed text. The positions of the text are same as the image. The numbers and other features are highly detailed too."
-    },
-    "class_type": "PrimitiveString",
-    "_meta": {
-      "title": "String"
-    }
-  },
-  "353": {
-    "inputs": {
-      "image": "1.png"
+      "image": "undefined"
     },
     "class_type": "LoadImage",
     "_meta": {
       "title": "Insert Mask"
     }
   },
-  "356": {
+  "347": {
     "inputs": {
-      "prompt": "",
-      "threshold": 0.4,
-      "smooth": 9,
-      "dilate": 0,
-      "blur": 0,
-      "clip_seg": [
-        "357",
-        0
-      ],
+      "upscale_model": "4x_NMKD-Siax_200k.pth",
+      "resampling_method": "lanczos",
+      "supersample": "true",
       "image": [
-        "186",
+        "262",
         0
       ]
     },
-    "class_type": "ApplyCLIPSeg+",
+    "class_type": "CR Upscale Image",
     "_meta": {
-      "title": "🔧 Apply CLIPSeg"
-    }
-  },
-  "357": {
-    "inputs": {},
-    "class_type": "LoadCLIPSegModels+",
-    "_meta": {
-      "title": "🔧 Load CLIPSeg Models"
-    }
-  },
-  "358": {
-    "inputs": {
-      "channel": "red",
-      "image": [
-        "353",
-        0
-      ]
-    },
-    "class_type": "ImageToMask",
-    "_meta": {
-      "title": "Convert Image to Mask"
+      "title": "🔍 CR Upscale Image"
     }
   }
 };
