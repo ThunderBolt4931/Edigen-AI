@@ -2011,7 +2011,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
       "param1": 100,
       "param2": 80,
       "min_dist_factor": 0.2,
-      "min_radius_factor": 0.010000000000000002,
+      "min_radius_factor": 0.05,
       "max_radius_factor": 0.4,
       "bg_red": 220,
       "bg_green": 220,
