@@ -10,6 +10,721 @@ import { BACKEND_COMFYUI_URL } from '@/config/backend_comfyui';
 
 type WorkflowJSON1 = Record<string, any>;
 type WorkflowJSON2 = Record<string, any>;
+type WorkflowJSON3 = Record<string, any>;
+const WORKFLOW_JSON_3: WorkflowJSON3  = {
+  "2": {
+    "inputs": {
+      "unet_name": "flux1-fill-dev-fp8.safetensors",
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "3": {
+    "inputs": {
+      "PowerLoraLoaderHeaderWidget": {
+        "type": "PowerLoraLoaderHeaderWidget"
+      },
+      "lora_1": {
+        "on": true,
+        "lora": "comfyui_subject_lora16.safetensors",
+        "strength": 1
+      },
+      "lora_2": {
+        "on": false,
+        "lora": "FLUX.1-Turbo-Alpha.safetensors",
+        "strength": 1
+      },
+      "lora_3": {
+        "on": false,
+        "lora": "pytorch_lora_weights.safetensors",
+        "strength": 1
+      },
+      "lora_4": {
+        "on": true,
+        "lora": "diffusion_pytorch_model.safetensors",
+        "strength": 1
+      },
+      "➕ Add Lora": "",
+      "model": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "Power Lora Loader (rgthree)",
+    "_meta": {
+      "title": "Power Lora Loader (rgthree)"
+    }
+  },
+  "5": {
+    "inputs": {
+      "model": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "FluxForwardOverrider",
+    "_meta": {
+      "title": "FluxForwardOverrider"
+    }
+  },
+  "7": {
+    "inputs": {
+      "rel_l1_thresh": 0.25000000000000006,
+      "start_at": 0,
+      "end_at": 1,
+      "cache_device": "main_device",
+      "wan_coefficients": "disabled",
+      "model": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "ApplyTeaCachePatchAdvanced",
+    "_meta": {
+      "title": "ApplyTeaCachePatchAdvanced"
+    }
+  },
+  "8": {
+    "inputs": {
+      "model": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "DifferentialDiffusion",
+    "_meta": {
+      "title": "Differential Diffusion"
+    }
+  },
+  "9": {
+    "inputs": {
+      "style_model_name": "flux1-redux-dev.safetensors"
+    },
+    "class_type": "StyleModelLoader",
+    "_meta": {
+      "title": "Load Style Model"
+    }
+  },
+  "10": {
+    "inputs": {
+      "clip_name": "sigclip_vision_patch14_384.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "Load CLIP Vision"
+    }
+  },
+  "11": {
+    "inputs": {
+      "strength": 1.0000000000000002,
+      "strength_type": "multiply",
+      "conditioning": [
+        "104",
+        2
+      ],
+      "style_model": [
+        "9",
+        0
+      ],
+      "clip_vision_output": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "StyleModelApply",
+    "_meta": {
+      "title": "Apply Style Model"
+    }
+  },
+  "12": {
+    "inputs": {
+      "crop": "none",
+      "clip_vision": [
+        "10",
+        0
+      ],
+      "image": [
+        "50",
+        0
+      ]
+    },
+    "class_type": "CLIPVisionEncode",
+    "_meta": {
+      "title": "CLIP Vision Encode"
+    }
+  },
+  "14": {
+    "inputs": {
+      "image": "input.jpeg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Clothes Image"
+    }
+  },
+  "15": {
+    "inputs": {
+      "image": "lady.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Subject Image"
+    }
+  },
+  "16": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "interpolation": "nearest",
+      "method": "stretch",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "123",
+        2
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "17": {
+    "inputs": {
+      "expand": 20,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 5,
+      "lerp_alpha": 1,
+      "decay_factor": 0.8000000000000002,
+      "fill_holes": false,
+      "mask": [
+        "25",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "Grow Mask With Blur"
+    }
+  },
+  "25": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "keep_proportions": false,
+      "upscale_method": "nearest-exact",
+      "crop": "disabled",
+      "mask": [
+        "76",
+        1
+      ]
+    },
+    "class_type": "ResizeMask",
+    "_meta": {
+      "title": "Resize Mask"
+    }
+  },
+  "26": {
+    "inputs": {
+      "noise_mask": true,
+      "positive": [
+        "38",
+        0
+      ],
+      "negative": [
+        "37",
+        0
+      ],
+      "vae": [
+        "28",
+        0
+      ],
+      "pixels": [
+        "49",
+        0
+      ],
+      "mask": [
+        "47",
+        0
+      ]
+    },
+    "class_type": "InpaintModelConditioning",
+    "_meta": {
+      "title": "InpaintModelConditioning"
+    }
+  },
+  "28": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "30": {
+    "inputs": {
+      "add_noise": "enable",
+      "noise_seed": 748829574271373,
+      "steps": 10,
+      "cfg": 0.8,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "start_at_step": 0,
+      "end_at_step": 10000,
+      "return_with_leftover_noise": "disable",
+      "model": [
+        "8",
+        0
+      ],
+      "positive": [
+        "26",
+        0
+      ],
+      "negative": [
+        "26",
+        1
+      ],
+      "latent_image": [
+        "26",
+        2
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "KSampler (Advanced)"
+    }
+  },
+  "31": {
+    "inputs": {
+      "samples": [
+        "30",
+        0
+      ],
+      "vae": [
+        "28",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "32": {
+    "inputs": {
+      "images": [
+        "36",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "36": {
+    "inputs": {
+      "width": 1080,
+      "height": 720,
+      "interpolation": "nearest",
+      "method": "stretch",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "31",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "37": {
+    "inputs": {
+      "conditioning": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "ConditioningZeroOut"
+    }
+  },
+  "38": {
+    "inputs": {
+      "guidance": 40,
+      "conditioning": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "FluxGuidance"
+    }
+  },
+  "41": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "36",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "43": {
+    "inputs": {
+      "mask": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "44": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "batch_size": 1,
+      "color": 0
+    },
+    "class_type": "EmptyImage",
+    "_meta": {
+      "title": "EmptyImage"
+    }
+  },
+  "46": {
+    "inputs": {
+      "direction": "right",
+      "match_image_size": true,
+      "image1": [
+        "43",
+        0
+      ],
+      "image2": [
+        "44",
+        0
+      ]
+    },
+    "class_type": "ImageConcanate",
+    "_meta": {
+      "title": "Image Concatenate"
+    }
+  },
+  "47": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "46",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "Convert Image to Mask"
+    }
+  },
+  "48": {
+    "inputs": {
+      "images": [
+        "46",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "49": {
+    "inputs": {
+      "direction": "right",
+      "match_image_size": false,
+      "image1": [
+        "16",
+        0
+      ],
+      "image2": [
+        "50",
+        0
+      ]
+    },
+    "class_type": "easy imageConcat",
+    "_meta": {
+      "title": "imageConcat"
+    }
+  },
+  "50": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "interpolation": "nearest",
+      "method": "stretch",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "61",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "51": {
+    "inputs": {
+      "images": [
+        "49",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "61": {
+    "inputs": {
+      "fill": "neutral",
+      "falloff": 0,
+      "image": [
+        "14",
+        0
+      ],
+      "mask": [
+        "62",
+        0
+      ]
+    },
+    "class_type": "INPAINT_MaskedFill",
+    "_meta": {
+      "title": "Fill Masked Area"
+    }
+  },
+  "62": {
+    "inputs": {
+      "mask": [
+        "77",
+        1
+      ]
+    },
+    "class_type": "InvertMask",
+    "_meta": {
+      "title": "InvertMask"
+    }
+  },
+  "63": {
+    "inputs": {
+      "images": [
+        "61",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "76": {
+    "inputs": {
+      "face": false,
+      "hair": false,
+      "hat": false,
+      "sunglass": false,
+      "left_arm": false,
+      "right_arm": false,
+      "left_leg": false,
+      "right_leg": false,
+      "upper_clothes": true,
+      "skirt": false,
+      "pants": false,
+      "dress": true,
+      "belt": false,
+      "shoe": false,
+      "bag": false,
+      "scarf": false,
+      "detail_method": "VITMatte",
+      "detail_erode": 12,
+      "detail_dilate": 6,
+      "black_point": 0.15,
+      "white_point": 0.99,
+      "process_detail": true,
+      "device": "cuda",
+      "max_megapixels": 2,
+      "image": [
+        "123",
+        2
+      ]
+    },
+    "class_type": "LayerMask: SegformerB2ClothesUltra",
+    "_meta": {
+      "title": "LayerMask: Segformer B2 Clothes Ultra"
+    }
+  },
+  "77": {
+    "inputs": {
+      "face": false,
+      "hair": false,
+      "hat": false,
+      "sunglass": false,
+      "left_arm": false,
+      "right_arm": false,
+      "left_leg": false,
+      "right_leg": false,
+      "upper_clothes": true,
+      "skirt": false,
+      "pants": false,
+      "dress": true,
+      "belt": true,
+      "shoe": false,
+      "bag": false,
+      "scarf": true,
+      "detail_method": "VITMatte",
+      "detail_erode": 1,
+      "detail_dilate": 12,
+      "black_point": 0.08000000000000002,
+      "white_point": 0.99,
+      "process_detail": true,
+      "device": "cuda",
+      "max_megapixels": 8,
+      "image": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "LayerMask: SegformerB2ClothesUltra",
+    "_meta": {
+      "title": "LayerMask: Segformer B2 Clothes Ultra"
+    }
+  },
+  "78": {
+    "inputs": {
+      "model_name": "RealESRGAN_x2.pth"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "104": {
+    "inputs": {
+      "latent_path": "",
+      "image_path": "",
+      "conditioning_path": "/ComfyUI/custom_nodes/was-node-suite-comfyui/cache/text_cache.conditioning"
+    },
+    "class_type": "Load Cache",
+    "_meta": {
+      "title": "Load Cache"
+    }
+  },
+  "123": {
+    "inputs": {
+      "object": "person",
+      "padding": 0,
+      "image": [
+        "15",
+        0
+      ]
+    },
+    "class_type": "ToolYoloCropper",
+    "_meta": {
+      "title": "ToolYoloCropper"
+    }
+  },
+  "124": {
+    "inputs": {
+      "images": [
+        "123",
+        2
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "125": {
+    "inputs": {
+      "width": 544,
+      "height": 720,
+      "position": "top-left",
+      "x_offset": 0,
+      "y_offset": 0,
+      "image": [
+        "36",
+        0
+      ]
+    },
+    "class_type": "ImageCrop+",
+    "_meta": {
+      "title": "🔧 Image Crop"
+    }
+  },
+  "126": {
+    "inputs": {
+      "width": [
+        "127",
+        4
+      ],
+      "height": [
+        "127",
+        5
+      ],
+      "interpolation": "nearest",
+      "method": "stretch",
+      "condition": "always",
+      "multiple_of": 0,
+      "image": [
+        "125",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "127": {
+    "inputs": {
+      "image": [
+        "123",
+        2
+      ]
+    },
+    "class_type": "Image Size to Number",
+    "_meta": {
+      "title": "Image Size to Number"
+    }
+  },
+  "130": {
+    "inputs": {
+      "images": [
+        "126",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Output tryon"
+    }
+  }
+};
 const WORKFLOW_JSON_1: WorkflowJSON1 = {
   "102": {
     "inputs": {
