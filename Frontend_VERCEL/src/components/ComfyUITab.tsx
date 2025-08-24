@@ -2970,7 +2970,7 @@ export const ComfyUITab = () => {
       cap: 'prompt_conditioning_cap.safetensors',
       bracelet: 'prompt_conditioning_bracelets.safetensors',
     };
-    const conditioningFilename = conditioningMap[selectedAccessory] || 'prompt_conditioning_Watch.safetensors';
+    const conditioningFilename = conditioningMap[selectedAccessory] || 'prompt_conditioning_watch.safetensors';
     const destinationNodeTitle = selectedAccessory === 'watch' ? "Insert hand" : "Other insert";
     const objectNodeTitle = selectedAccessory === 'watch' ? "Insert object" : "Other insert object";
     const maskNodeTitle = selectedAccessory === 'watch' ? "Insert Mask" : "Load Other Mask";
