@@ -9,7 +9,7 @@
  * - Production: "https://your-comfyui-domain.com"
  */
 
-export const BACKEND_COMFYUI_URL = "https://jackets-sacred-bobby-slim.trycloudflare.com";
+export const BACKEND_COMFYUI_URL = "https://math-collections-greeting-police.trycloudflare.com";
 
 /**
  * ComfyUI backend configuration object with additional settings
