@@ -1433,7 +1433,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
     }
   }
 };
-const WORKFLOW_JSON_2: WorkflowJSON2 = {
+const WORKFLOW_JSON_2: WorkflowJSON2 ={
   "1": {
     "inputs": {
       "image": [
@@ -1661,7 +1661,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
   },
   "21": {
     "inputs": {
-      "brightness": 1.05,
+      "brightness": 0.95,
       "contrast": 0.98,
       "saturation": 1.05,
       "image": [
@@ -1926,7 +1926,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
   },
   "59": {
     "inputs": {
-      "image": "pexels-pixabay-68201 (2).jpg"
+      "image": "cap.jpg"
     },
     "class_type": "LoadImage",
     "_meta": {
@@ -1935,7 +1935,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
   },
   "60": {
     "inputs": {
-      "filename": "prompt_conditioning.safetensors"
+      "filename": "prompt_conditioning_cap.safetensors"
     },
     "class_type": "LoadConditioningNode",
     "_meta": {
@@ -1976,7 +1976,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
   },
   "66": {
     "inputs": {
-      "noise_seed": 522921034946146
+      "noise_seed": 842559801850307
     },
     "class_type": "RandomNoise",
     "_meta": {
@@ -2022,7 +2022,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
   },
   "70": {
     "inputs": {
-      "lora_name": "comfyui_portrait_lora64.safetensors",
+      "lora_name": "comfyui_subject_lora16.safetensors",
       "strength_model": 0.8000000000000002,
       "model": [
         "69",
@@ -2050,7 +2050,7 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
   },
   "72": {
     "inputs": {
-      "image": "clipspace/clipspace-mask-518788.3000000119.png [input]"
+      "image": "clipspace/clipspace-painted-masked-1545178.png [input]"
     },
     "class_type": "LoadImage",
     "_meta": {
@@ -2083,20 +2083,20 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
       "mask_fill_holes": true,
       "mask_expand_pixels": 0,
       "mask_invert": false,
-      "mask_blend_pixels": 32,
+      "mask_blend_pixels": 64,
       "mask_hipass_filter": 0.1,
       "extend_for_outpainting": false,
       "extend_up_factor": 1,
       "extend_down_factor": 1,
       "extend_left_factor": 1,
       "extend_right_factor": 1,
-      "context_from_mask_extend_factor": 1.2000000000000002,
+      "context_from_mask_extend_factor": 1.5,
       "output_resize_to_target_size": true,
       "output_target_width": 720,
       "output_target_height": 720,
       "output_padding": "128",
       "image": [
-        "84",
+        "72",
         0
       ],
       "mask": [
@@ -2191,44 +2191,6 @@ const WORKFLOW_JSON_2: WorkflowJSON2 = {
     "class_type": "PreviewImage",
     "_meta": {
       "title": "Final Output"
-    }
-  },
-  "84": {
-    "inputs": {
-      "width": [
-        "85",
-        0
-      ],
-      "height": [
-        "85",
-        1
-      ],
-      "upscale_method": "nearest-exact",
-      "keep_proportion": "stretch",
-      "pad_color": "0, 0, 0",
-      "crop_position": "center",
-      "divisible_by": 2,
-      "device": "cpu",
-      "image": [
-        "72",
-        0
-      ]
-    },
-    "class_type": "ImageResizeKJv2",
-    "_meta": {
-      "title": "Resize Image v2"
-    }
-  },
-  "85": {
-    "inputs": {
-      "image": [
-        "78",
-        0
-      ]
-    },
-    "class_type": "GetImageSize+",
-    "_meta": {
-      "title": "🔧 Get Image Size"
     }
   }
 };
