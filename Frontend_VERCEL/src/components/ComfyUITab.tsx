@@ -11,7 +11,7 @@ import { BACKEND_COMFYUI_URL } from '@/config/backend_comfyui';
 type WorkflowJSON1 = Record<string, any>;
 type WorkflowJSON2 = Record<string, any>;
 type WorkflowJSON3 = Record<string, any>;
-const WORKFLOW_JSON_3: WorkflowJSON3 = {
+const WORKFLOW_JSON_3: WorkflowJSON3  = {
   "2": {
     "inputs": {
       "unet_name": "flux1-fill-dev-fp8.safetensors",
@@ -2148,7 +2148,7 @@ const WORKFLOW_JSON_1: WorkflowJSON1 = {
     }
   }
 };
-const WORKFLOW_JSON_2: WorkflowJSON2 = {
+const WORKFLOW_JSON_2: WorkflowJSON2 ={
   "1": {
     "inputs": {
       "image": [
@@ -2965,62 +2965,39 @@ export const ComfyUITab = () => {
     const updatedWorkflow = JSON.parse(JSON.stringify(workflow));
 
     // Different node titles based on selected accessory
-    if (selectedAccessory === 'cloths') {
-      // Logic for the new "Cloths" workflow (WORKFLOW_JSON_3)
-      const destinationNodeTitle = "Subject Image";
-      const objectNodeTitle = "Clothes Image";
-      let destinationNodeId, objectNodeId;
+    const conditioningMap: { [key: string]: string } = {
+      watch: 'prompt_conditioning_watch.safetensors',
+      cap: 'prompt_conditioning_cap.safetensors',
+      bracelet: 'prompt_conditioning_bracelets.safetensors',
+    };
+    const conditioningFilename = conditioningMap[selectedAccessory] || 'prompt_conditioning_Watch.safetensors';
+    const destinationNodeTitle = selectedAccessory === 'watch' ? "Insert hand" : "Other insert";
+    const objectNodeTitle = selectedAccessory === 'watch' ? "Insert object" : "Other insert object";
+    const maskNodeTitle = selectedAccessory === 'watch' ? "Insert Mask" : "Load Other Mask";
+    let destinationNodeId, objectNodeId, maskNodeId, conditioningNodeId;
+    // Find the "Load Conditioning" node in the current workflow
+    const conditioningNodeTitle = "Load Conditioning";
+    for (const id in updatedWorkflow) {
+      if (updatedWorkflow[id]._meta?.title === conditioningNodeTitle) {
+        conditioningNodeId = id;
+        break; // Stop looking once we've found it
+      }
+    }
 
-      for (const id in updatedWorkflow) {
-        if (updatedWorkflow[id]._meta?.title === destinationNodeTitle) {
-          destinationNodeId = id;
-        }
-        if (updatedWorkflow[id]._meta?.title === objectNodeTitle) {
-          objectNodeId = id;
-        }
-      }
+    // If the node was found, update its filename input
+    if (conditioningNodeId) {
+      updatedWorkflow[conditioningNodeId].inputs.filename = conditioningFilename;
+    }
+    for (const id in updatedWorkflow) {
+      if (updatedWorkflow[id]._meta?.title === destinationNodeTitle) destinationNodeId = id;
+      if (updatedWorkflow[id]._meta?.title === objectNodeTitle) objectNodeId = id;
+      if (updatedWorkflow[id]._meta?.title == maskNodeTitle) maskNodeId = id;
+    }
 
-      if (destinationNodeId) {
-        updatedWorkflow[destinationNodeId].inputs.image = destinationImageName;
-      }
-      if (objectNodeId) {
-        updatedWorkflow[objectNodeId].inputs.image = objectImageName;
-      }
-    } else {
-      // Original logic for "Watch" and "Cap" workflows
-      const conditioningMap: { [key: string]: string } = {
-        watch: 'prompt_conditioning_watch.safetensors',
-        cap: 'prompt_conditioning_cap.safetensors',
-      };
-      const conditioningFilename = conditioningMap[selectedAccessory] || 'prompt_conditioning_watch.safetensors';
-      const destinationNodeTitle = selectedAccessory === 'watch' ? "Insert hand" : "Other insert";
-      const objectNodeTitle = selectedAccessory === 'watch' ? "Insert object" : "Other insert object";
-      const maskNodeTitle = selectedAccessory === 'watch' ? "Insert Mask" : "Load Other Mask";
-      let destinationNodeId, objectNodeId, maskNodeId, conditioningNodeId;
-
-      const conditioningNodeTitle = "Load Conditioning";
-      for (const id in updatedWorkflow) {
-        if (updatedWorkflow[id]._meta?.title === conditioningNodeTitle) {
-          conditioningNodeId = id;
-          break;
-        }
-      }
-
-      if (conditioningNodeId) {
-        updatedWorkflow[conditioningNodeId].inputs.filename = conditioningFilename;
-      }
-
-      for (const id in updatedWorkflow) {
-        if (updatedWorkflow[id]._meta?.title === destinationNodeTitle) destinationNodeId = id;
-        if (updatedWorkflow[id]._meta?.title === objectNodeTitle) objectNodeId = id;
-        if (updatedWorkflow[id]._meta?.title === maskNodeTitle) maskNodeId = id;
-      }
-
-      if (destinationNodeId) updatedWorkflow[destinationNodeId].inputs.image = destinationImageName;
-      if (objectNodeId) updatedWorkflow[objectNodeId].inputs.image = objectImageName;
-      if (maskNodeId && maskImageName) {
-        updatedWorkflow[maskNodeId].inputs.image = maskImageName;
-      }
+    if (destinationNodeId) updatedWorkflow[destinationNodeId].inputs.image = destinationImageName;
+    if (objectNodeId) updatedWorkflow[objectNodeId].inputs.image = objectImageName;
+    if (maskNodeId && maskImageName) {
+      updatedWorkflow[maskNodeId].inputs.image = maskImageName;
     }
     return updatedWorkflow;
   }, [selectedAccessory]);
@@ -3095,11 +3072,7 @@ export const ComfyUITab = () => {
       const objFileInfo = await uploadImage(objectImage);
       updateStatus('Uploads complete. Preparing workflow...');
 
-      const selectedWorkflow = selectedAccessory === 'watch'
-        ? WORKFLOW_JSON_1
-        : selectedAccessory === 'cloths'
-          ? WORKFLOW_JSON_3
-          : WORKFLOW_JSON_2;
+      const selectedWorkflow = selectedAccessory === 'watch' ? WORKFLOW_JSON_1 : WORKFLOW_JSON_2;
 
       // *** MODIFIED: Pass the mask filename to the workflow function ***
       const modifiedWorkflow = getModifiedWorkflow(
@@ -3127,16 +3100,9 @@ export const ComfyUITab = () => {
             const executedNodeId = data.data.node;
 
             // Dynamically find the ID of the node titled "Final Image"
-            const currentWorkflow = selectedAccessory === 'watch'
-              ? WORKFLOW_JSON_1
-              : selectedAccessory === 'cloths'
-                ? WORKFLOW_JSON_3
-                : WORKFLOW_JSON_2;
-
-            const finalNodeTitle = selectedAccessory === 'cloths' ? 'Output tryon' : 'Final Output';
-
+            const currentWorkflow = selectedAccessory === 'watch' ? WORKFLOW_JSON_1 : WORKFLOW_JSON_2;
             const finalNodeId = Object.keys(currentWorkflow).find(
-              id => (currentWorkflow as any)[id]._meta?.title === finalNodeTitle
+              id => (currentWorkflow as any)[id]._meta?.title === 'Final Output'
             );
 
             // Check if the executed node is our final target node
@@ -3211,7 +3177,7 @@ export const ComfyUITab = () => {
       drawWidth = Math.floor(drawWidth * ratio);
       drawHeight = Math.floor(drawHeight * ratio);
     }
-
+    
     // --- NEW: Store the calculated canvas dimensions in state ---
     setCanvasSize({ width: drawWidth, height: drawHeight });
 
@@ -3517,7 +3483,7 @@ export const ComfyUITab = () => {
               <option value="">--Select an accessory--</option>
               <option value="watch">Watch</option>
               <option value="cap">Cap</option>
-              <option value="cloths">Cloths</option>
+              <option value="bracelet">Bracelet</option>
             </select>
             <p className="text-sm text-white mt-1">
               {selectedAccessory === 'watch'
@@ -3535,11 +3501,7 @@ export const ComfyUITab = () => {
           <CardContent className="p-6 space-y-4 flex-grow flex flex-col">
             <div>
               <Label htmlFor="destination-image" className="text-foreground font-medium">
-                {selectedAccessory === 'watch'
-                  ? 'Hand Image (with mask)'
-                  : selectedAccessory === 'cloths'
-                    ? 'Subject Image'
-                    : 'Destination Image (with mask)'}
+                {selectedAccessory === 'watch' ? 'Hand Image (with mask)' : 'Destination Image (with mask)'}
               </Label>
               <Input
                 id="destination-image"
@@ -3551,9 +3513,7 @@ export const ComfyUITab = () => {
               <p className="text-sm text-foreground/60 mt-1">
                 {selectedAccessory === 'watch'
                   ? 'Upload an image of a hand where you want to place the watch'
-                  : selectedAccessory === 'cloths'
-                    ? 'Upload an image of the person who will wear the clothes'
-                    : `Upload an image where you want to place the ${selectedAccessory}`}
+                  : `Upload an image where you want to place the ${selectedAccessory}`}
               </p>
             </div>
 
@@ -3594,9 +3554,7 @@ export const ComfyUITab = () => {
           <CardContent className="p-6 space-y-4 flex-grow flex flex-col">
             <div>
               <Label htmlFor="object-image" className="text-foreground font-medium">
-                {selectedAccessory === 'cloths'
-                  ? 'Clothes to Insert'
-                  : `${selectedAccessory.charAt(0).toUpperCase() + selectedAccessory.slice(1)} to Insert`}
+                {selectedAccessory.charAt(0).toUpperCase() + selectedAccessory.slice(1)} to Insert
               </Label>
               <Input
                 id="object-image"
@@ -3609,7 +3567,7 @@ export const ComfyUITab = () => {
                 Upload an image of the {selectedAccessory} you want to insert
               </p>
             </div>
-
+            
             {objectImage && (
               <div className="relative mt-auto w-full h-72 lg:h-96 bg-black/20 rounded-lg flex items-center justify-center">
                 <img
@@ -3659,26 +3617,26 @@ export const ComfyUITab = () => {
                 </div>
               )}
               <Button
-                onClick={startGeneration}
-                disabled={isGenerating || !destinationImage || !objectImage}
-                className={`w-full py-3 text-white font-medium
+    onClick={startGeneration}
+    disabled={isGenerating || !destinationImage || !objectImage}
+    className={`w-full py-3 text-white font-medium
       transition-all duration-300 hover:scale-105 active:scale-95
       relative flex items-center justify-center
       ${isGenerating
-                    ? 'bg-[#A3E635]/90'
-                    : 'bg-[#A3E635]/80 hover:bg-green-700'
-                  }
+        ? 'bg-[#A3E635]/90'
+        : 'bg-[#A3E635]/80 hover:bg-green-700'
+      }
     `}
-              >
-                {isGenerating ? (
-                  <>
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
-                    <span className="animate-pulse">Processing...</span>
-                  </>
-                ) : (
-                  'Generate Image'
-                )}
-              </Button>
+>
+    {isGenerating ? (
+        <>
+            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+            <span className="animate-pulse">Processing...</span>
+        </>
+    ) : (
+        'Generate Image'
+    )}
+</Button>
             </div>
           </CardContent>
         </Card>
@@ -3709,7 +3667,7 @@ export const ComfyUITab = () => {
               <Button onClick={resetCanvas} variant="outline" size="sm">Reset Mask</Button>
               <Button onClick={resetView} variant="outline" size="sm">Reset View</Button>
             </div>
-
+            
             {/* Canvas Container */}
             <div className="w-full flex-grow relative bg-muted/10 rounded-lg" style={{ overflow: 'hidden', cursor: 'default' }} onWheel={handleWheel} onMouseDown={panStart} onMouseMove={panMove} onMouseUp={panEnd} onMouseLeave={panEnd}>
               <div className="absolute inset-0 flex items-center justify-center p-2">
