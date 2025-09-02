@@ -137,7 +137,7 @@ The frontend will be available at `http://localhost:5173`. You will need to conf
 
 You can choose one of the two available backends.
 
-#### Option A: ComfyUI Backend
+#### Option A: ComfyUI_backend
 
 This backend is ideal for running complex, customized workflows.
 
@@ -163,7 +163,7 @@ Example:
     wget --header="Authorization: Bearer <your-huggingface-token>" https://huggingface.co/your-model-url
     ```
 
-#### Option B: SD Backend
+#### Option B: SD_Backend
 and in the sdxl backend file you had to put your ngrok auth token in the last cell
 This backend provides a more conventional API for image generation and includes advanced features like automatic LoRA selection.
 
