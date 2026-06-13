@@ -2,7 +2,21 @@
 EdiGenAI is a versatile and powerful web application for AI image generation, offering a rich set of features for both beginners and advanced users. It provides a user-friendly interface to interact with multiple backend systems, including a sophisticated ComfyUI-based pipeline and a flexible Stable Diffusion-based server.
 
 ---
+## 🎯 Problem Statement
 
+Traditional image generation platforms often force users to choose between ease of use and advanced customization.
+
+While diffusion-based interfaces provide accessibility, they frequently lack support for sophisticated workflows such as virtual try-on, localized inpainting, text preservation, and multi-model orchestration. Conversely, highly customizable systems often require significant technical expertise.
+
+EdiGen AI bridges this gap by combining production-grade diffusion pipelines, ComfyUI workflow orchestration, custom model conditioning, and specialized computer vision modules into a unified platform that enables both novice and advanced users to create high-quality AI-generated imagery.
+
+The platform was designed with three primary goals:
+
+- High-quality image generation
+- Modular workflow customization
+- Efficient inference and resource utilization
+
+---
 ## Key Features 🚀
 
 ---
@@ -97,6 +111,20 @@ This project introduces several powerful custom nodes to enhance your generative
     * **Mask Watch Face**: Precisely masks the inside circular area of a watch dial. This is essential for isolating the face to apply text or other details accurately.
 * **Flux Model Optimizer**: A helper node designed to work with the watch masker, optimizing the generative process for clarity and precision on the watch face. which compiles the model and increaes in inference speed 
 
+---
+## 📈 Performance Optimizations
+
+EdiGen AI incorporates multiple optimizations aimed at reducing computational overhead while maintaining image quality.
+
+| Optimization | Impact |
+|-------------|---------|
+| Custom Conditioning Models | ~8 GB VRAM reduction |
+| FLUX Compiler | Faster inference |
+| OCR-Guided Inpainting | Improved text quality |
+| Multi-Stage Cropping Pipeline | Better local detail preservation |
+| High-Resolution Upscaling | Sharper final outputs |
+
+These optimizations enable complex workflows to run efficiently on consumer-grade hardware while preserving professional-quality outputs.
 ---
 
 ### Results 🖼️
